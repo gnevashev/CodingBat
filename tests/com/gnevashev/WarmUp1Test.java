@@ -56,5 +56,35 @@ class WarmUp1Test {
 
     }
 
+    @Test
+    void nearHundred() {
+        assertTrue(w.nearHundred(93));
+        assertTrue(w.nearHundred(90));
+        assertTrue(w.nearHundred(110));
+        assertTrue(w.nearHundred(190));
+        assertTrue(w.nearHundred(210));
+        assertFalse(w.nearHundred(89));
+        assertFalse(w.nearHundred(189));
+        assertFalse(w.nearHundred(211));
+    }
 
+    @Test
+    void posNeg() {
+        assertTrue(w.posNeg(1, -1, false));
+        assertTrue(w.posNeg(-1, 1, false));
+        assertTrue(w.posNeg(-4, -5, true));
+
+        assertFalse(w.posNeg(4, 5, false));
+        assertFalse(w.posNeg(-4, -5, false));
+        assertFalse(w.posNeg(1, -1, true));
+        assertFalse(w.posNeg(-1, 1, true));
+
+    }
+
+    @Test
+    void notString() {
+        assertEquals("not candy", w.notString("candy"));
+        assertEquals("not x", w.notString("x"));
+        assertEquals("not bad", w.notString("not bad"));
+    }
 }
