@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WarmUp1Test {
+
     WarmUp1 w = new WarmUp1();
     @Test
     void monkeyTrouble() {
@@ -87,4 +88,28 @@ class WarmUp1Test {
         assertEquals("not x", w.notString("x"));
         assertEquals("not bad", w.notString("not bad"));
     }
+
+    @Test
+    void missingChar() {
+        assertEquals("ktten", w.missingChar("kitten", 1));
+        assertEquals("itten", w.missingChar("kitten", 0));
+        assertEquals("kittn", w.missingChar("kitten", 4));
+        assertEquals("kitte", w.missingChar("kitten", 5));
+    }
+
+    @Test
+    void frontBack() {
+        assertEquals("eodc", w.frontBack("code"));
+        assertEquals("a", w.frontBack("a"));
+        assertEquals("ba", w.frontBack("ab"));
+        assertEquals("", w.frontBack(""));
+    }
+
+    @Test
+    void front3() {
+        assertEquals("abcabcabc", w.front3("abcd"));
+        assertEquals("aaa", w.front3("a"));
+        assertEquals("", w.front3(""));
+    }
+
 }

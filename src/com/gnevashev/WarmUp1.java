@@ -73,8 +73,38 @@ public class WarmUp1 {
         }
     }
 
+    //Given a non-empty string and an int n, return a new string where the char at index n has been removed.
+    // The value of n will be a valid index of a char in the original string (i.e. n will be in the range 0..str.length()-1 inclusive).
+    public String missingChar(String str, int n) {
+        return str.substring(0, n) + str.substring(n+1, str.length());
+    }
 
 
+    //Given a string, return a new string where the first and last chars have been exchanged.
+    public String frontBack(String str) {
+        int len = str.length();
+        if (len <= 1) return str;
+        String firstChar = str.substring(0, 1);
+        String lastChar = str.substring(len-1, len);
 
+        return lastChar + str.substring(1, len-1) + firstChar;
+
+    }
+
+
+    //Given a string, we'll say that the front is the first 3 chars of the string.
+    //If the string length is less than 3, the front is whatever is there.
+    //Return a new string which is 3 copies of the front.
+    public String front3(String str) {
+        String substr = str.substring(0, Math.min(str.length(), 3));
+        return substr + substr + substr;
+/*
+        if (str.length() < 3)
+            substr = str;
+        else
+            substr = str.substring(0, 2);
+
+        */
+    }
 
 }
