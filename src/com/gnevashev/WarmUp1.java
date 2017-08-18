@@ -98,13 +98,6 @@ public class WarmUp1 {
     public String front3(String str) {
         String substr = str.substring(0, Math.min(str.length(), 3));
         return substr + substr + substr;
-/*
-        if (str.length() < 3)
-            substr = str;
-        else
-            substr = str.substring(0, 2);
-
-        */
     }
 
 }
