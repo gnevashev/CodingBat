@@ -7,6 +7,33 @@ import static org.junit.jupiter.api.Assertions.*;
 class WarmUp1Test {
     WarmUp1 w = new WarmUp1();
 
+    //Given 2 int values, return true if they are both in the range 30..40 inclusive, or they are both in the range 40..50 inclusive.
+    @Test
+    void in3050() {
+        assertTrue(w.in3050(30, 40));
+        assertTrue(w.in3050(40, 50));
+        assertFalse(w.in3050(32, 42));
+        assertFalse(w.in3050(22, 42));
+        assertFalse(w.in3050(15, 52));
+    }
+
+    //Given 2 positive int values, return the larger value that is in the range 10..20 inclusive, or return 0 if neither is in that range.
+    @Test
+    void max1020() {
+        assertEquals(0, w.max1020(9, 21));
+        assertEquals(20, w.max1020(9, 20));
+        assertEquals(10, w.max1020(25, 10));
+        assertEquals(19, w.max1020(15, 19));
+    }
+
+
+    @Test
+    void close10() {
+        assertEquals(0, w.close10(8, 12));
+        assertEquals(12, w.close10(7, 12));
+        assertEquals(-1, w.close10(-1, 25));
+    }
+
     @Test
     void intMax() {
         assertEquals(3, w.intMax(1, 2, 3));

@@ -205,5 +205,41 @@ public class WarmUp1 {
 
     }
 
+    //Given 2 int values, return whichever value is nearest to the value 10, or return 0 in the event of a tie.
+    //Note that Math.abs(n) returns the absolute value of a number.
+    public int close10(int a, int b) {
+        int aDiff = Math.abs(10-a);
+        int bDiff = Math.abs(10-b);
+        if (aDiff == bDiff) {
+            return 0;
+        }
+        if (aDiff > bDiff) {
+            return b;
+        }
+        else {
+            return a;
+        }
+    }
+
+
+    //Given 2 int values, return true if they are both in the range 30..40 inclusive, or they are both in the range 40..50 inclusive.
+    public boolean in3050(int a, int b) {
+        return ((a >= 30 && a <= 40 && b >=30 && b <= 40) || (a >= 40 && a <= 50 && b >=40 && b <= 50));
+
+    }
+
+    //Given 2 positive int values, return the larger value that is in the range 10..20 inclusive, or return 0 if neither is in that range.
+    public int max1020(int a, int b) {
+        boolean aInRange = (a >= 10 && a <= 20);
+        boolean bInRange = (b >= 10 && b <= 20);
+        if (aInRange && bInRange) {
+            return Math.max(a, b);
+        }
+        if (aInRange) return a;
+        if (bInRange) return b;
+        return 0;
+
+    }
+
 
 }
