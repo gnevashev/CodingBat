@@ -7,6 +7,36 @@ import static org.junit.jupiter.api.Assertions.*;
 class WarmUp1Test {
     WarmUp1 w = new WarmUp1();
 
+    @Test
+    void everyNth() {
+        assertEquals("Mrce", w.everyNth("Miracle", 2));
+        assertEquals("aceg", w.everyNth("abcdefg", 2));
+        assertEquals("adg", w.everyNth("abcdefg",3));
+        assertEquals("Cca", w.everyNth("Chocolate",3));
+    }
+
+    @Test
+    void endUp() {
+        assertEquals("HeLLO", w.endUp("Hello"));
+        assertEquals("hi thERE", w.endUp("hi there"));
+        assertEquals("HI", w.endUp("hi"));
+    }
+
+    @Test
+    void lastDigit() {
+        assertTrue(w.lastDigit(7, 17));
+        assertFalse(w.lastDigit(6, 17));
+        assertTrue(w.lastDigit(3, 113));
+    }
+
+    //Return true if the given string contains between 1 and 3 'e' chars.
+    @Test
+    void stringE() {
+      assertTrue(w.stringE("Hello"));
+      assertTrue(w.stringE("Heelle"));
+      assertFalse(w.stringE("Heelele"));
+    }
+
     //Given 2 int values, return true if they are both in the range 30..40 inclusive, or they are both in the range 40..50 inclusive.
     @Test
     void in3050() {

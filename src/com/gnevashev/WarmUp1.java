@@ -241,5 +241,41 @@ public class WarmUp1 {
 
     }
 
+    //Return true if the given string contains between 1 and 3 'e' chars.
+    public boolean stringE(String str) {
+        char[] c = str.toCharArray();
+        int qty = 0;
+        for (char e: c) {
+            if (e == 'e') qty++;
+        }
+        return (qty >= 1 && qty <= 3);
+    }
+
+    //Given two non-negative int values, return true if they have the same last digit, such as with 27 and 57.
+    // Note that the % "mod" operator computes remainders, so 17 % 10 is 7.
+    public boolean lastDigit(int a, int b) {
+        return (a % 10 == b % 10);
+    }
+
+    //Given a string, return a new string where the last 3 chars are now in upper case.
+    //If the string has less than 3 chars, uppercase whatever is there.
+    //Note that str.toUpperCase() returns the uppercase version of a string.
+    public String endUp(String str) {
+        int strlen = str.length();
+        if (strlen <= 3) return str.toUpperCase();
+        return str.substring(0, strlen-3) + str.substring(strlen-3, strlen).toUpperCase();
+    }
+
+    //Given a non-empty string and an int N, return the string made starting with char 0, and then every Nth char of the string.
+    //So if N is 3, use char 0, 3, 6, ... and so on. N is 1 or more.
+    public String everyNth(String str, int n) {
+        String resultStr = "";
+        for (int i=0; i<str.length(); i++) {
+            if (i % n == 0) {
+                resultStr = resultStr + str.charAt(i);
+            }
+        }
+        return resultStr;
+    }
 
 }
