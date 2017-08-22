@@ -57,5 +57,75 @@ class WarmUp2 {
         }
         return result;
     }
+    //Given a non-empty string like "Code" return a string like "CCoCodCode".
+    public String stringSplosion(String str) {
+        String result = "";
+        for (int i = 0; i <= str.length(); i++) {
+            result += str.substring(0, i);
+        }
+        return result;
+    }
+    //Given a string, return the count of the number of times that a substring length 2 appears in the string
+    //and also as the last 2 chars of the string, so "hixxxhi" yields 1 (we won't count the end substring).
+    public int last2(String str) {
+        if (str.length() < 2) return 0;
+        String substr = str.substring(str.length()-2);
+        int count = 0;
+        for (int i = 0; i < str.length()-2 ; i++) {
+           if (str.startsWith(substr, i)) count++;
+        }
+        return count;
+    }
+
+    //Given an array of ints, return the number of 9's in the array.
+    public int arrayCount9(int[] nums) {
+        int count = 0;
+        for (int num : nums) {
+            if (num == 9) count++;
+        }
+        return count;
+    }
+
+    //Given an array of ints, return true if one of the first 4 elements in the array is a 9. The array length may be less than 4.
+    public boolean arrayFront9(int[] nums) {
+        for (int i = 0; i < Math.min(nums.length, 4) ; i++) {
+            if (nums[i] == 9) return true;
+        }
+        return false;
+    }
+
+    //Given an array of ints, return true if the sequence of numbers 1, 2, 3 appears in the array somewhere.
+    public boolean array123(int[] nums) {
+        for (int i = 0; i < nums.length-2; i++) {
+            if (nums[i] == 1 && nums[i+1] == 2 && nums[i+2] == 3) return true;
+        }
+        return false;
+    }
+
+    //Given 2 strings, a and b, return the number of the positions where they contain the same length 2 substring.
+    //So "xxcaazz" and "xxbaaz" yields 3, since the "xx", "aa", and "az" substrings appear in the same place in both strings.
+    public int stringMatch(String a, String b) {
+        int count = 0;
+        for (int i = 0; i < Math.min(a.length(), b.length())-1; i++) {
+            if (a.startsWith(b.substring(i, i+2), i))
+                count++;
+        }
+        return count;
+    }
+
+    //Given a string, return a version where all the "x" have been removed. Except an "x" at the very start or end should not be removed.
+    public String stringX(String str) {
+        StringBuilder result = new StringBuilder();
+        char[] arr = str.toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            if (i == 0 || i == arr.length-1 || arr[i] != 'x') {
+                result.append(arr[i]);
+            }
+
+        }
+        return result.toString();
+    }
+
+
 
 }
