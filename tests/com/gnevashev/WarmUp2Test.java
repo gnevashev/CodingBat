@@ -8,6 +8,55 @@ class WarmUp2Test {
     WarmUp2 w = new WarmUp2();
 
     @Test
+    void has271() {
+
+        assertTrue(w.has271(new int[] {1, 2, 7, 1}));
+        assertTrue(w.has271(new int[] {2, 7, 1}));
+        assertTrue(w.has271(new int[] {2, 7, -2, 4, 9, 3}));
+        assertTrue(w.has271(new int[] {2, 7, 3}));
+        assertTrue(w.has271(new int[] {2, 7, -1}));
+        assertFalse(w.has271(new int[] {1, 2, 8, 1}));
+        assertFalse(w.has271(new int[] {2, 7, 4}));
+        assertFalse(w.has271(new int[] {2, 7, 5, 10, 1}));
+    }
+
+
+    @Test
+    void noTriples() {
+        assertTrue(w.noTriples(new int[]{1, 1, 2, 2, 1}));
+        assertTrue(w.noTriples(new int[]{}));
+        assertFalse(w.noTriples(new int[]{1, 1, 2, 2, 2, 1}));
+        assertFalse(w.noTriples(new int[]{1, 1, 1, 2, 2, 2, 1}));
+    }
+
+    @Test
+    void array667() {
+        assertEquals(1, w.array667(new int[]{6, 6, 2}));
+        assertEquals(1, w.array667(new int[]{6, 6, 2, 6}));
+        assertEquals(1, w.array667(new int[]{6, 7, 2, 6}));
+        assertEquals(2, w.array667(new int[]{6, 6, 6, 2}));
+    }
+
+    @Test
+    void stringYak() {
+        assertEquals("pak", w.stringYak("yakpak"));
+        assertEquals("pak", w.stringYak("pakyak"));
+        assertEquals("123ya", w.stringYak("yak123ya"));
+        //assertEquals("123ya", w.stringYak("ywk123ya"));
+        assertEquals("", w.stringYak("yak"));
+        assertEquals("", w.stringYak(""));
+    }
+
+    @Test
+    void altPairs() {
+        assertEquals("kien", w.altPairs("kitten"));
+        assertEquals("Chole", w.altPairs("Chocolate"));
+        assertEquals("Congrr", w.altPairs("CodingHorror"));
+        assertEquals("ThThThth", w.altPairs("ThisThatTheOther"));
+        assertEquals("", w.altPairs(""));
+    }
+
+    @Test
     void stringX() {
         assertEquals("xHix", w.stringX("xxHxix"));
         assertEquals("abcd", w.stringX("abxxxcd"));
