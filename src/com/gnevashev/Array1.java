@@ -1,6 +1,7 @@
 package com.gnevashev;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Array1 {
@@ -139,8 +140,105 @@ public class Array1 {
 
     //Start with 2 int arrays, a and b, of any length. Return how many of the arrays have 1 as their first element
     public int start1(int[] a, int[] b) {
-        //TODO the function
-        return 0;
+        int ret = 0;
+        if (a.length > 0 && a[0] == 1){
+            ret++;
+        }
+        if (b.length > 0 && b[0] == 1){
+            ret++;
+        }
+        return ret;
     }
 
+    //Start with 2 int arrays, a and b, each length 2.
+    //Consider the sum of the values in each array.
+    //Return the array which has the largest sum.
+    //In event of a tie, return a.
+    public int[] biggerTwo(int[] a, int[] b) {
+        if (a[0] + a[1] >= b[0] + b[1]) {
+            return a;
+        }
+        else {
+            return b;
+        }
+    }
+
+    //Given an array of ints of even length, return a new array length 2 containing the middle two elements from the original array.
+    //The original array will be length 2 or more.
+    public int[] makeMiddle(int[] nums) {
+        int mid = nums.length/2;
+        return new int[]{nums[mid-1], nums[mid]};
+    }
+
+    //Given 2 int arrays, each length 2, return a new array length 4 containing all their elements.
+    public int[] plusTwo(int[] a, int[] b) {
+        return new int[]{a[0], a[1], b[0], b[1]};
+    }
+
+    //Given an array of ints, swap the first and last elements in the array.
+    //Return the modified array. The array length will be at least 1.
+    public int[] swapEnds(int[] nums) {
+        int lastElement;
+        if (nums.length > 1) {
+            lastElement = nums[nums.length-1];
+            nums[nums.length-1] = nums[0];
+            nums[0] = lastElement;
+            return nums;
+        }
+        else {
+            return nums;
+        }
+    }
+    //Given an array of ints of odd length, return a new array length 3
+    //containing the elements from the middle of the array. The array length will be at least 3.
+    public int[] midThree(int[] nums) {
+        int midElement = (nums.length-1)/2;
+        return new int[]{nums[midElement-1], nums[midElement], nums[midElement+1]};
+    }
+
+    //Given an array of ints of odd length, look at the first, last,
+    //and middle values in the array and return the largest.
+    //The array length will be a least 1.
+    public int maxTriple(int[] nums) {
+        int midElement = (nums.length-1)/2;
+        int firstPair = Math.max(nums[0], nums[midElement]);
+        return Math.max(firstPair, nums[nums.length-1]);
+    }
+
+    //Given an int array of any length, return a new array of its first 2 elements.
+    //If the array is smaller than length 2, use whatever elements are present
+    public int[] frontPiece(int[] nums) {
+        if (nums.length < 2) {
+            return nums;
+        }
+        else {
+            return new int[]{nums[0], nums[1]};
+        }
+    }
+    //We'll say that a 1 immediately followed by a 3 in an array is an "unlucky" 1.
+    //Return true if the given array contains an unlucky 1 in the first 2 or last 2 positions in the array.
+    public boolean unlucky1(int[] nums) {
+        int len = nums.length;
+        if (len < 2) return false;
+        if (len == 2 && nums[0] == 1 && nums[1] == 3) return true;
+        return (len > 2 && ((nums[0] == 1 && nums[1] == 3) || (nums[1] == 1 && nums[2] == 3) || (nums[len-2] == 1 && nums[len-1] == 3)));
+    }
+
+    //Given 2 int arrays, a and b, return a new array length 2 containing, as much as will fit, the elements from
+    //a followed by the elements from b. The arrays may be any length, including 0, but there will be 2 or more
+    //elements available between the 2 arrays.
+    public int[] make2(int[] a, int[] b) {
+        int c[] = new int [a.length+b.length];
+        for (int i = 0; i < a.length; i++) {
+            c[i] = a[i];
+        }
+        for (int i = 0; i < b.length; i++) {
+            c[a.length + i] = b[i];
+        }
+        if (c.length >= 2)
+            return new int[]{c[0], c[1]};
+        else
+            return c;
+
+    }
 }
