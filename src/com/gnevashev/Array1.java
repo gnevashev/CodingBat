@@ -85,5 +85,69 @@ public class Array1 {
         return retArray;
     }
 
+    //Given an array of ints length 3, figure out which is larger, the first or last element in the array,
+    //and set all the other elements to be that value. Return the changed array.
+    public int[] maxEnd3(int[] nums) {
+        int maxValue = Math.max(nums[0], nums[nums.length-1]);
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = maxValue;
+        }
+        return nums;
+    }
+
+    //Given an array of ints, return the sum of the first 2 elements in the array.
+    //If the array length is less than 2, just sum up the elements that exist, returning 0 if the array is length 0.
+    public int sum2(int[] nums) {
+        int ret = 0;
+        for (int i = 0; i < Math.min(2, nums.length); i++) {
+            ret += nums[i];
+        }
+        return ret;
+    }
+
+    //Given 2 int arrays, a and b, each length 3, return a new array length 2 containing their middle elements.
+    public int[] middleWay(int[] a, int[] b) {
+        int[] c = new int[]{a[1], b[1]};
+        return c;
+    }
+
+    //Given an array of ints, return a new array length 2 containing the first and last elements from the original array.
+    //The original array will be length 1 or more.
+    public int[] makeEnds(int[] nums) {
+        int[] a = new int[]{nums[0], nums[nums.length-1]};
+        return a;
+    }
+
+    //Given an int array length 2, return true if it contains a 2 or a 3.
+    public boolean has23(int[] nums) {
+        return (nums[0] == 2 || nums[1] == 2 || nums[0] == 3 || nums[1] == 3);
+    }
+
+    //Given an int array, return a new array with double the length where its last element is the same as the original array,
+    //and all the other elements are 0. The original array will be length 1 or more. Note: by default, a new int array contains all 0's.
+    public int[] makeLast(int[] nums) {
+        int[] a = new int[nums.length*2];
+        a[a.length-1] = nums[nums.length-1];
+        return a;
+    }
+
+    //Given an int array, return true if the array contains 2 twice, or 3 twice. The array will be length 0, 1, or 2.
+    public boolean double23(int[] nums) {
+        return (nums.length == 2 && ((nums[0] == 2 && nums[1] == 2) || (nums[0] == 3 && nums[1] == 3)));
+    }
+
+    //Given an int array length 3, if there is a 2 in the array immediately followed by a 3, set the 3 element to 0.
+    //Return the changed array.
+    public int[] fix23(int[] nums) {
+        if (nums[0] == 2 && nums[1] == 3) {
+            nums[1] = 0;
+            return nums;
+        }
+        if (nums[1] == 2 && nums[2] == 3) {
+            nums[2] = 0;
+            return nums;
+        }
+        return nums;
+    }
 
 }
