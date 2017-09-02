@@ -107,15 +107,13 @@ public class Array1 {
 
     //Given 2 int arrays, a and b, each length 3, return a new array length 2 containing their middle elements.
     public int[] middleWay(int[] a, int[] b) {
-        int[] c = new int[]{a[1], b[1]};
-        return c;
+        return new int[]{a[1], b[1]};
     }
 
     //Given an array of ints, return a new array length 2 containing the first and last elements from the original array.
     //The original array will be length 1 or more.
     public int[] makeEnds(int[] nums) {
-        int[] a = new int[]{nums[0], nums[nums.length-1]};
-        return a;
+        return new int[]{nums[0], nums[nums.length-1]};
     }
 
     //Given an int array length 2, return true if it contains a 2 or a 3.
@@ -148,6 +146,12 @@ public class Array1 {
             return nums;
         }
         return nums;
+    }
+
+    //Start with 2 int arrays, a and b, of any length. Return how many of the arrays have 1 as their first element
+    public int start1(int[] a, int[] b) {
+        //TODO the function
+        return 0;
     }
 
 }
