@@ -2,6 +2,17 @@ package com.gnevashev;
 
 public class String1 {
 
+    //Given a string, return a version without both the first and last char of the string.
+    // The string may be any length, including 0.
+    public String withouEnd2(String str) {
+        if (str.length() > 2) {
+            return str.substring(1, str.length()-1);
+        }
+        else {
+            return "";
+        }
+    }
+
     //Given a string, return a string length 1 from its front, unless front is false,
     //in which case return a string length 1 from its back. The string will be non-empty.
     public String theEnd(String str, boolean front) {

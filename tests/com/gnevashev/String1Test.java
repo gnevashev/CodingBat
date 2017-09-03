@@ -5,8 +5,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class String1Test {
-
     String1 w = new String1();
+
+    //Given a string, return a version without both the first and last char of the string.
+    // The string may be any length, including 0.
+    @Test
+    void withouEnd2() {
+        assertEquals("ell", w.withouEnd2("Hello"));
+        assertEquals("b", w.withouEnd2("abc"));
+        assertEquals("", w.withouEnd2("ab"));
+        assertEquals("", w.withouEnd2(""));
+    }
 
     //Given a string, return a string length 1 from its front, unless front is false,
     //in which case return a string length 1 from its back. The string will be non-empty.
