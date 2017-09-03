@@ -2,6 +2,56 @@ package com.gnevashev;
 
 public class String1 {
 
+    //Given a string, return a string length 1 from its front, unless front is false,
+    //in which case return a string length 1 from its back. The string will be non-empty.
+    public String theEnd(String str, boolean front) {
+        if (front)
+            return str.substring(0, 1);
+        else
+            return str.substring(str.length()-1);
+    }
+
+    //Given a string, return a "rotated right 2" version where the last 2 chars are moved to the start.
+    //The string length will be at least 2.
+    public String right2(String str) {
+        return str.substring(str.length()-2) + str.substring(0, str.length()-2);
+    }
+
+    //Given a string, return a "rotated left 2" version where the first 2 chars are moved to the end.
+    //The string length will be at least 2.
+    public String left2(String str) {
+        return str.substring(2) + str.substring(0, 2);
+    }
+
+    //Given 2 strings, return their concatenation, except omit the first char of each.
+    //The strings will be at least length 1.
+    public String nonStart(String a, String b) {
+        return a.substring(1) + b.substring(1);
+    }
+
+    //Given 2 strings, a and b, return a string of the form short+long+short,
+    //with the shorter string on the outside and the longer string on the inside.
+    //The strings will not be the same length, but they may be empty (length 0).
+    public String comboString(String a, String b) {
+        if (a.length() >= b.length()) {
+            return b + a + b;
+        }
+        else {
+            return a + b + a;
+        }
+    }
+
+    //Given a string, return a version without the first and last char,
+    //so "Hello" yields "ell". The string length will be at least 2.
+    public String withoutEnd(String str) {
+        return str.substring(1, str.length()-1);
+    }
+
+    //Given a string of even length, return the first half. So the string "WooHoo" yields "Woo".
+    public String firstHalf(String str) {
+        return str.substring(0, str.length()/2);
+    }
+
 
     public String helloName(String name) {
         return "Hello ".concat(name).concat("!");
