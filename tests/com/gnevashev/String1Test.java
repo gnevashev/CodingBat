@@ -5,7 +5,38 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class String1Test {
+
     String1 w = new String1();
+
+    //Given a string and an index, return a string length 2 starting at the given index.
+    //If the index is too big or too small to define a string length 2, use the first 2 chars.
+    //The string length will be at least 2.
+    @Test
+    void twoChar() {
+        assertEquals("ja", w.twoChar("java", 0));
+        assertEquals("va", w.twoChar("java", 2));
+        assertEquals("ja", w.twoChar("java", 3));
+        assertEquals("ja", w.twoChar("java", -1));
+        assertEquals("ja", w.twoChar("java", 15));
+    }
+
+    //Given a string and an int n, return a string made of the first and last n chars from the string.
+    //The string length will be at least n.
+    @Test
+    void nTwice() {
+        assertEquals("Helo", w.nTwice("Hello", 2));
+        assertEquals("Choate", w.nTwice("Chocolate", 3));
+        assertEquals("Ce", w.nTwice("Chocolate", 1));
+    }
+
+    //Given a string, return true if it ends in "ly".
+    @Test
+    void endsLy() {
+        assertTrue(w.endsLy("oddly"));
+        assertFalse(w.endsLy("y"));
+        assertFalse(w.endsLy(""));
+        assertFalse(w.endsLy("oddy"));
+    }
 
     //Given a string, return a version without both the first and last char of the string.
     // The string may be any length, including 0.

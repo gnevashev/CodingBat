@@ -2,6 +2,27 @@ package com.gnevashev;
 
 public class String1 {
 
+    //Given a string and an index, return a string length 2 starting at the given index.
+    //If the index is too big or too small to define a string length 2, use the first 2 chars.
+    //The string length will be at least 2.
+    public String twoChar(String str, int index) {
+        if (index < 0 || index > str.length()-2) {
+            index = 0;
+        }
+        return str.substring(index, index+2);
+    }
+
+    //Given a string and an int n, return a string made of the first and last n chars from the string.
+    //The string length will be at least n.
+    public String nTwice(String str, int n) {
+        return str.substring(0, n) + str.substring(str.length()-n);
+    }
+
+    //Given a string, return true if it ends in "ly".
+    public boolean endsLy(String str) {
+        return str.endsWith("ly");
+    }
+
     //Given a string, return a version without both the first and last char of the string.
     // The string may be any length, including 0.
     public String withouEnd2(String str) {
