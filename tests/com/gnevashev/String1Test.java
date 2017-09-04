@@ -5,8 +5,63 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class String1Test {
-
     String1 w = new String1();
+
+    //Given two strings, append them together (known as "concatenation") and return the result.
+    //However, if the concatenation creates a double-char, then omit one of the chars, so "abc" and "cat" yields "abcat".
+    @Test
+    void conCat() {
+        assertEquals("abcat", w.conCat("abc", "cat"));
+        assertEquals("dogcat", w.conCat("dog", "cat"));
+        assertEquals("abc", w.conCat("abc", ""));
+    }
+
+    //Given 2 strings, a and b, return a new string made of the first char of a and the last char of b,
+    //so "yo" and "java" yields "ya". If either string is length 0, use '@' for its missing char.
+    @Test
+    void lastChars() {
+        assertEquals("ls", w.lastChars("last", "chars"));
+        assertEquals("ya", w.lastChars("yo", "java"));
+        assertEquals("h@", w.lastChars("hi", ""));
+    }
+
+    //Given a string, return a string length 2 made of its first 2 chars.
+    //If the string length is less than 2, use '@' for the missing chars.
+    @Test
+    void atFirst() {
+        assertEquals("@@", w.atFirst(""));
+        assertEquals("a@", w.atFirst("a"));
+        assertEquals("ab", w.atFirst("ab"));
+        assertEquals("zx", w.atFirst("zxc"));
+    }
+
+    //Given a string, return true if "bad" appears starting at index 0 or 1 in the string,
+    //such as with "badxxx" or "xbadxx" but not "xxbadxx". The string may be any length, including 0.
+    //Note: use .equals() to compare 2 strings.
+    @Test
+    void hasBad() {
+        assertTrue(w.hasBad("badxx"));
+        assertTrue(w.hasBad("xbadxx"));
+        assertFalse(w.hasBad("xxbadxx"));
+    }
+
+    //Given a string of odd length, return the string length 3 from its middle,
+    //so "Candy" yields "and". The string length will be at least 3.
+    @Test
+    void middleThree() {
+        assertEquals("and", w.middleThree("Candy"));
+        assertEquals("and", w.middleThree("and"));
+        assertEquals("lvi", w.middleThree("solving"));
+    }
+
+    //Given a string of even length, return a string made of the middle two chars,
+    // so the string "string" yields "ri". The string length will be at least 2.
+    @Test
+    void middleTwo() {
+        assertEquals("ri", w.middleTwo("string"));
+        assertEquals("od", w.middleTwo("code"));
+        assertEquals("ct", w.middleTwo("Practice"));
+    }
 
     //Given a string and an index, return a string length 2 starting at the given index.
     //If the index is too big or too small to define a string length 2, use the first 2 chars.

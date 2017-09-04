@@ -2,6 +2,49 @@ package com.gnevashev;
 
 public class String1 {
 
+    //Given two strings, append them together (known as "concatenation") and return the result.
+    //However, if the concatenation creates a double-char, then omit one of the chars, so "abc" and "cat" yields "abcat".
+    public String conCat(String a, String b) {
+        if (!b.isEmpty() && a.endsWith(b.substring(0, 1))) { //when b not empty can get the first char
+            return a + b.substring(1);
+        }
+        return a + b;
+    }
+    //Given 2 strings, a and b, return a new string made of the first char of a and the last char of b,
+    //so "yo" and "java" yields "ya". If either string is length 0, use '@' for its missing char.
+    public String lastChars(String a, String b) {
+        a += "@";
+        b = "@" + b;
+        return a.substring(0, 1) + b.substring(b.length()-1);
+    }
+
+    //Given a string, return a string length 2 made of its first 2 chars.
+    //If the string length is less than 2, use '@' for the missing chars.
+    public String atFirst(String str) {
+        str += "@@";
+        return str.substring(0, 2);
+    }
+
+    //Given a string, return true if "bad" appears starting at index 0 or 1 in the string,
+    //such as with "badxxx" or "xbadxx" but not "xxbadxx". The string may be any length, including 0.
+    //Note: use .equals() to compare 2 strings.
+    public boolean hasBad(String str) {
+        return (str.startsWith("bad") || str.startsWith("bad", 1));
+    }
+
+    //Given a string of odd length, return the string length 3 from its middle,
+    //so "Candy" yields "and". The string length will be at least 3.
+    public String middleThree(String str) {
+        int strMidPosition = str.length()/2;
+        return str.substring(strMidPosition-1, strMidPosition+2);
+    }
+
+    //Given a string of even length, return a string made of the middle two chars,
+    // so the string "string" yields "ri". The string length will be at least 2.
+    public String middleTwo(String str) {
+        int strMidPosition = str.length()/2;
+        return str.substring(strMidPosition-1, strMidPosition+1);
+    }
     //Given a string and an index, return a string length 2 starting at the given index.
     //If the index is too big or too small to define a string length 2, use the first 2 chars.
     //The string length will be at least 2.
