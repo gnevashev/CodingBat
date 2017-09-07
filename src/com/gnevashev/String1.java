@@ -2,6 +2,116 @@ package com.gnevashev;
 
 public class String1 {
 
+    //Given a string, if the first or last chars are 'x', return the string
+    //without those 'x' chars, and otherwise return the string unchanged.
+    public String withoutX(String str) {
+        str = str.replaceAll("^x|x$", "");
+        //str = str.replaceAll("^x", "");
+        //str = str.replaceAll("x$", "");
+        return str;
+    }
+
+    //Given a string and a second "word" string, we'll say that the word matches the string if it appears at the
+    //front of the string, except its first char does not need to match exactly. On a match, return the front of
+    //the string, or otherwise return the empty string. So, so with the string "hippo" the word "hi" returns "hi"
+    //and "xip" returns "hip". The word will be at least length 1
+    public String startWord(String str, String word) {
+        if (str.isEmpty()) return "";
+
+        if (word.length() == 1) {
+            return str.substring(0, 1);
+        }
+
+        if (word.length() > 1 && str.startsWith(word.substring(1), 1)) {
+            return str.substring(0, 1) + str.substring(1, word.length());
+        }
+
+        return "";
+
+    }
+
+
+
+    //Given a string, return a version without the first 2 chars.
+    //Except keep the first char if it is 'a' and keep the second char if it is 'b'.
+    // The string may be any length. Harder than it looks.
+    public String deFront(String str) {
+        int strLen = str.length();
+        String retStr = "";
+        if (strLen >= 1 && str.charAt(0) == 'a') {
+            retStr = "a";
+        }
+        if (strLen >= 2 && str.charAt(1) == 'b') {
+            retStr += "b";
+        }
+        if (strLen > 2) {
+            retStr += str.substring(2);
+        }
+        return retStr;
+    }
+
+    //Given a string, if a length 2 substring appears at both its beginning and end,
+    // return a string without the substring at the beginning, so "HelloHe" yields "lloHe".
+    //The substring may overlap with itself, so "Hi" yields "".
+    //Otherwise, return the original string unchanged.
+    public String without2(String str) {
+        if (str.length() < 2) return str;
+        String endStr = "^" + str.substring(str.length()-2);
+        return str.replaceFirst(endStr, "");
+    }
+
+    //Given a string, return a new string made of 3 copies of the first 2 chars of the original string.
+    //The string may be any length. If there are fewer than 2 chars, use whatever is there.
+    public String extraFront(String str) {
+        if (str.length() < 3) {
+            return str + str + str;
+        }
+        String subStr = str.substring(0, 2);
+        return subStr + subStr + subStr;
+    }
+
+
+    //Given two strings, append them together (known as "concatenation") and return the result.
+    //However, if the strings are different lengths, omit chars from the longer string
+    //so it is the same length as the shorter string. So "Hello" and "Hi" yield "loHi".
+    //The strings may be any length.
+    public String minCat(String a, String b) {
+       if (a.isEmpty() || b.isEmpty()) return "";
+       int aLength = a.length();
+       int bLength = b.length();
+       if (aLength > bLength){
+            return a.substring(aLength - bLength) + b;
+       }
+       if (aLength < bLength){
+            return a + b.substring(bLength - aLength);
+       }
+       return a + b; //if strings are equal length
+    }
+
+    //Given a string, return true if the first 2 chars in the string
+    //also appear at the end of the string, such as with "edited".
+    public boolean frontAgain(String str) {
+        return (str.length() > 1 && str.endsWith(str.substring(0, 2)));
+    }
+
+    //Given a string, if the string begins with "red" or "blue"
+    //return that color string, otherwise return the empty string.
+    public String seeColor(String str) {
+        if (str.startsWith("blue")) return "blue";
+        if (str.startsWith("red")) return "red";
+        return "";
+    }
+
+    //Given a string of any length, return a new string where the last 2 chars,
+    //if present, are swapped, so "coding" yields "codign".
+    public String lastTwo(String str) {
+        int strLen = str.length();
+        if (strLen < 2) {
+            return str;
+        }
+        return str.substring(0, strLen-2) + str.substring(strLen-1) + str.substring(strLen-2, strLen-1);
+    }
+
     //Given two strings, append them together (known as "concatenation") and return the result.
     //However, if the concatenation creates a double-char, then omit one of the chars, so "abc" and "cat" yields "abcat".
     public String conCat(String a, String b) {

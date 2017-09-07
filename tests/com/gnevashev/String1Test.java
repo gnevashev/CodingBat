@@ -5,7 +5,102 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class String1Test {
+
     String1 w = new String1();
+
+    //Given a string, if the first or last chars are 'x', return the string
+    //without those 'x' chars, and otherwise return the string unchanged.
+    @Test
+    void withoutX() {
+        assertEquals("Hi", w.withoutX("xHix"));
+        assertEquals("Hi", w.withoutX("xHi"));
+        assertEquals("Hxi", w.withoutX("Hxix"));
+    }
+
+    //Given a string and a second "word" string, we'll say that the word matches the string if it appears at the
+    //front of the string, except its first char does not need to match exactly. On a match, return the front of
+    //the string, or otherwise return the empty string. So, so with the string "hippo" the word "hi" returns "hi"
+    //and "xip" returns "hip". The word will be at least length 1
+    @Test
+    void startWord() {
+        assertEquals("hi", w.startWord("hippo", "hi"));
+        assertEquals("hip", w.startWord("hippo", "xip"));
+        assertEquals("h", w.startWord("hippo", "i"));
+    }
+
+    //Given a string, return a version without the first 2 chars.
+    //Except keep the first char if it is 'a' and keep the second char if it is 'b'.
+    // The string may be any length. Harder than it looks.
+    @Test
+    void deFront() {
+        assertEquals("llo", w.deFront("Hello"));
+        assertEquals("va", w.deFront("java"));
+        assertEquals("aay", w.deFront("away"));
+        assertEquals("abby", w.deFront("abby"));
+        assertEquals("bby", w.deFront("qbby"));
+    }
+
+    //Given a string, if a length 2 substring appears at both its beginning and end,
+    // return a string without the substring at the beginning, so "HelloHe" yields "lloHe".
+    //The substring may overlap with itself, so "Hi" yields "".
+    //Otherwise, return the original string unchanged.
+    @Test
+    void without2() {
+        assertEquals("lloHe", w.without2("HelloHe"));
+        assertEquals("lloHelloHe", w.without2("HelloHelloHe"));
+        assertEquals("HelloHi", w.without2("HelloHi"));
+        assertEquals("", w.without2("Hi"));
+    }
+
+    //Given a string, return a new string made of 3 copies of the first 2 chars of the original string.
+    //The string may be any length. If there are fewer than 2 chars, use whatever is there.
+    @Test
+    void extraFront() {
+        assertEquals("HeHeHe", w.extraFront("Hello"));
+        assertEquals("ababab", w.extraFront("ab"));
+        assertEquals("HHH", w.extraFront("H"));
+    }
+
+    //Given two strings, append them together (known as "concatenation") and return the result.
+    //However, if the strings are different lengths, omit chars from the longer string
+    //so it is the same length as the shorter string. So "Hello" and "Hi" yield "loHi".
+    //The strings may be any length.
+    @Test
+    void minCat() {
+        assertEquals("loHi", w.minCat("Hello", "Hi"));
+        assertEquals("ellojava", w.minCat("Hello", "java"));
+        assertEquals("javaello", w.minCat("java", "Hello"));
+    }
+
+    //Given a string, return true if the first 2 chars in the string
+    //also appear at the end of the string, such as with "edited".
+    @Test
+    void frontAgain() {
+        assertTrue(w.frontAgain("edited"));
+        assertTrue(w.frontAgain("ed"));
+        assertFalse(w.frontAgain("edit"));
+        assertFalse(w.frontAgain(""));
+    }
+
+    //Given a string, if the string begins with "red" or "blue"
+    //return that color string, otherwise return the empty string.
+    @Test
+    void seeColor() {
+        assertEquals("red", w.seeColor("redxx"));
+        assertEquals("", w.seeColor("xxred"));
+        assertEquals("blue", w.seeColor("blueTimes"));
+    }
+
+    //Given a string of any length, return a new string where the last 2 chars,
+    //if present, are swapped, so "coding" yields "codign".
+    @Test
+    void lastTwo() {
+        assertEquals("codign", w.lastTwo("coding"));
+        assertEquals("cta", w.lastTwo("cat"));
+        assertEquals("ba", w.lastTwo("ab"));
+        assertEquals("a", w.lastTwo("a"));
+        assertEquals("", w.lastTwo(""));
+    }
 
     //Given two strings, append them together (known as "concatenation") and return the result.
     //However, if the concatenation creates a double-char, then omit one of the chars, so "abc" and "cat" yields "abcat".
@@ -167,6 +262,7 @@ class String1Test {
     @Test
     void withoutX2() {
         assertEquals("Hi", w.withoutX2("xHi"));
+        assertEquals("Hi", w.withoutX2("xxHi"));
         assertEquals("", w.withoutX2(""));
         assertEquals("", w.withoutX2("x"));
         assertEquals("H", w.withoutX2("H"));
