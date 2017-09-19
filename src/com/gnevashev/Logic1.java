@@ -2,6 +2,78 @@ package com.gnevashev;
 
 public class Logic1 {
 
+    //Given three ints, a b c, return true if two or more of them have the same rightmost digit.
+    //The ints are non-negative. Note: the % "mod" operator computes the remainder, e.g. 17 % 10 is 7.
+    public boolean lastDigit(int a, int b, int c) {
+        a = a % 10;
+        b = b % 10;
+        c = c % 10;
+        return (a == b || a == c || b == c);
+    }
+
+    //Given three ints, a b c, return true if b is greater than a, and c is greater than b.
+    //However, with the exception that if "bOk" is true, b does not need to be greater than a.
+    public boolean inOrder(int a, int b, int c, boolean bOk) {
+        if (bOk) {
+            return (b < c);
+        }
+        else {
+            return (a < b && b < c);
+        }
+    }
+
+    //Given three ints, a b c, return true if it is possible to add two of the ints to get the third.
+    public boolean twoAsOne(int a, int b, int c) {
+        return (a + b == c || a + c == b || b + c == a);
+    }
+
+    //Given an int n, return the string form of the number followed by "!".
+    //So the int 6 yields "6!". Except if the number is divisible by 3 use "Fizz" instead of the number,
+    //and if the number is divisible by 5 use "Buzz", and if divisible by both 3 and 5, use "FizzBuzz".
+    //Note: the % "mod" operator computes the remainder after division, so 23 % 10 yields 3.
+    //What will the remainder be when one number divides evenly into another?
+    public String fizzString2(int n) {
+        boolean f = (n % 3 == 0);
+        boolean b = (n % 5 == 0);
+        if (f && b) return "FizzBuzz!";
+        if (f) return "Fizz!";
+        if (b) return "Buzz!";
+        return n + "!";
+    }
+
+
+    //Given a string str, if the string starts with "f" return "Fizz".
+    //If the string ends with "b" return "Buzz".
+    //If both the "f" and "b" conditions are true, return "FizzBuzz".
+    //In all other cases, return the string unchanged.
+    public String fizzString(String str) {
+        boolean f = str.startsWith("f");
+        boolean b = str.endsWith("b");
+        if (f && b) return "FizzBuzz";
+        if (f) return "Fizz";
+        if (b) return "Buzz";
+        return str;
+    }
+
+    //We are having a party with amounts of tea and candy.
+    //Return the int outcome of the party encoded as 0=bad, 1=good, or 2=great.
+    //A party is good (1) if both tea and candy are at least 5.
+    //However, if either tea or candy is at least double the amount of the other one, the party is great (2).
+    //However, in all cases, if either tea or candy is less than 5, the party is always bad (0).
+    public int teaParty(int tea, int candy) {
+        if (tea < 5 || candy < 5) return 0; //party is always bad
+        if (tea >= candy * 2 || candy >= tea * 2) return 2; //party is great
+        return 1; // all other cases
+    }
+
+    //Your cell phone rings. Return true if you should answer it. Normally you answer, except in the morning
+    //you only answer if it is your mom calling. In all cases, if you are asleep, you do not answer.
+    public boolean answerCell(boolean isMorning, boolean isMom, boolean isAsleep) {
+        if (isAsleep) return false; //if you are asleep you don't answer
+        if (isMom) return true; //you are not asleep and mom calling you answer
+        return (!isMorning); // all other calls you take not in the morning
+    }
+
 
     //Given 2 ints, a and b, return their sum. However, "teen" values in the range 13..19 inclusive,
     //are extra lucky. So if either value is a teen, just return 19.

@@ -5,8 +5,84 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Logic1Test {
-
     Logic1 l = new Logic1();
+
+    //Given three ints, a b c, return true if two or more of them have the same rightmost digit.
+    //The ints are non-negative. Note: the % "mod" operator computes the remainder, e.g. 17 % 10 is 7.
+    @Test
+    void lastDigit() {
+        assertTrue(l.lastDigit(23, 19, 13));
+        assertTrue(l.lastDigit(23, 19, 3));
+        assertFalse(l.lastDigit(23, 19, 12));
+    }
+
+    //Given three ints, a b c, return true if b is greater than a, and c is greater than b.
+    //However, with the exception that if "bOk" is true, b does not need to be greater than a.
+    @Test
+    void inOrder() {
+        assertTrue(l.inOrder(1, 2, 4, false));
+        assertFalse(l.inOrder(1, 2, 1, false));
+        assertTrue(l.inOrder(1, 1, 2, true));
+        assertTrue(l.inOrder(7, 5, 6, true));
+
+    }
+
+    //Given three ints, a b c, return true if it is possible to add two of the ints to get the third.
+    @Test
+    void twoAsOne() {
+        assertTrue(l.twoAsOne(1, 2, 3));
+        assertTrue(l.twoAsOne(3, 2, 1));
+        assertFalse(l.twoAsOne(3, 2, 2));
+    }
+
+    //Given an int n, return the string form of the number followed by "!".
+    //So the int 6 yields "6!". Except if the number is divisible by 3 use "Fizz" instead of the number,
+    //and if the number is divisible by 5 use "Buzz", and if divisible by both 3 and 5, use "FizzBuzz".
+    //Note: the % "mod" operator computes the remainder after division, so 23 % 10 yields 3.
+    //What will the remainder be when one number divides evenly into another?
+    @Test
+    void fizzString2() {
+        assertEquals("1!", l.fizzString2(1));
+        assertEquals("2!", l.fizzString2(2));
+        assertEquals("Fizz!", l.fizzString2(3));
+        assertEquals("Buzz!", l.fizzString2(5));
+        assertEquals("FizzBuzz!", l.fizzString2(15));
+    }
+
+
+    //Given a string str, if the string starts with "f" return "Fizz".
+    //If the string ends with "b" return "Buzz".
+    //If both the "f" and "b" conditions are true, return "FizzBuzz".
+    //In all other cases, return the string unchanged.
+    @Test
+    void fizzString() {
+        assertEquals("Fizz", l.fizzString("fig"));
+        assertEquals("Buzz", l.fizzString("dib"));
+        assertEquals("FizzBuzz", l.fizzString("fib"));
+        assertEquals("abc", l.fizzString("abc"));
+    }
+
+    //We are having a party with amounts of tea and candy.
+    //Return the int outcome of the party encoded as 0=bad, 1=good, or 2=great.
+    //A party is good (1) if both tea and candy are at least 5.
+    //However, if either tea or candy is at least double the amount of the other one, the party is great (2).
+    //However, in all cases, if either tea or candy is less than 5, the party is always bad (0).
+    @Test
+    void teaParty() {
+        assertEquals(1, l.teaParty(6, 8));
+        assertEquals(0, l.teaParty(3, 8));
+        assertEquals(2, l.teaParty(20, 6));
+    }
+
+    //Your cell phone rings. Return true if you should answer it. Normally you answer, except in the morning
+    //you only answer if it is your mom calling. In all cases, if you are asleep, you do not answer.
+    @Test
+    void answerCell() {
+        assertTrue(l.answerCell(false, false, false));
+        assertTrue(l.answerCell(true, true, false));
+        assertFalse(l.answerCell(false, false, true));
+        assertFalse(l.answerCell(true, false, false));
+    }
 
     //Given 2 ints, a and b, return their sum. However, "teen" values in the range 13..19 inclusive,
     //are extra lucky. So if either value is a teen, just return 19.
