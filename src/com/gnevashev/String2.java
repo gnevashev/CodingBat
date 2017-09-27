@@ -139,4 +139,27 @@ public class String2 {
         return sb.toString();
     }
 
+    //Given a string, consider the prefix string made of the first N chars of the string.
+    //Does that prefix string appear somewhere else in the string?
+    //Assume that the string is not empty and that N is in the range 1..str.length()
+    public boolean prefixAgain(String str, int n) {
+        return (str.indexOf(str.substring(0, n), n) != -1);
+    }
+
+    //Given a string, does "xyz" appear in the middle of the string? To define middle,
+    //we'll say that the number of chars to the left and right of the "xyz" must differ
+    //by at most one. This problem is harder than it looks.
+    public boolean xyzMiddle(String str) {
+        int midStringIndex = str.length() / 2;
+        int indexOf = -1;
+        if (str.length() < 3) return false;
+        if (str.length() % 2 == 0) {
+            indexOf = str.indexOf("xyz", midStringIndex - 2);
+            return (indexOf == midStringIndex-2 || indexOf == midStringIndex-1);
+        }
+        else {
+            indexOf = str.indexOf("xyz", midStringIndex - 1);
+            return (indexOf == midStringIndex-1);
+        }
+    }
 }

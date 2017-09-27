@@ -7,6 +7,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class String2Test {
     String2 s = new String2();
 
+    //Given a string, does "xyz" appear in the middle of the string? To define middle,
+    //we'll say that the number of chars to the left and right of the "xyz" must differ
+    //by at most one. This problem is harder than it looks.
+    @Test
+    void xyzMiddle() {
+        assertTrue(s.xyzMiddle("AAxyzBB"));
+        assertTrue(s.xyzMiddle("AxyzBB"));
+        assertTrue(s.xyzMiddle("AAxyzB"));
+        assertFalse(s.xyzMiddle("AxyzBBB"));
+    }
+
+    //Given a string, consider the prefix string made of the first N chars of the string.
+    //Does that prefix string appear somewhere else in the string?
+    //Assume that the string is not empty and that N is in the range 1..str.length()
+    @Test
+    void prefixAgain() {
+        assertTrue(s.prefixAgain("abXYabc", 1));
+        assertTrue(s.prefixAgain("abXYabc", 2));
+        assertFalse(s.prefixAgain("abXYabc", 3));
+    }
+
     //Given two strings, word and a separator sep, return a big string made of count
     //occurrences of the word, separated by the separator string.
     @Test
