@@ -1,10 +1,5 @@
 package com.gnevashev;
 
-import com.sun.deploy.util.StringUtils;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
-
-import java.util.regex.Pattern;
-
 public class String2 {
 
     //Given a string, return a string where for every char in the original, there are two chars.
@@ -162,4 +157,98 @@ public class String2 {
             return (indexOf == midStringIndex-1);
         }
     }
+
+    //A sandwich is two pieces of bread with something in between. Return the string that is
+    //between the first and last appearance of "bread" in the given string, or return the empty
+    //string "" if there are not two pieces of bread.
+    public String getSandwich(String str) {
+        int firstIndex = -1;
+        int lastIndex = -1;
+        firstIndex = str.indexOf("bread");
+        lastIndex = str.lastIndexOf("bread");
+        if (firstIndex == -1 || firstIndex == lastIndex){
+            return "";
+        }
+        return str.substring(firstIndex + 5, lastIndex);
+    }
+
+    //Returns true if for every '*' (star) in the string, if there are chars both immediately
+    //before and after the star, they are the same.
+    public boolean sameStarChar(String str) {
+        char[] arr = str.toCharArray();
+        for (int i = 1; i < arr.length-1; i++) {
+            if (arr[i] == '*' && arr[i+1] != arr[i-1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    //Given a string, compute a new string by moving the first char to come after the next two
+    //chars, so "abc" yields "bca". Repeat this process for each subsequent group of 3 chars, so
+    //"abcdef" yields "bcaefd". Ignore any group of fewer than 3 chars at the end.
+    public String oneTwo(String str) {
+        if (str.length() < 3) return "";
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < str.length()-2; i = i+3) {
+            sb.append(str.charAt(i+1));
+            sb.append(str.charAt(i+2));
+            sb.append(str.charAt(i));
+        }
+        return sb.toString();
+    }
+
+    //Look for patterns like "zip" and "zap" in the string -- length-3, starting with 'z' and ending
+    //with 'p'. Return a string where for all such words, the middle letter is gone, so "zipXzap"
+    //yields "zpXzp".
+    public String zipZap(String str) {
+        return str.replaceAll("z.p", "zp");
+    }
+
+    //Return a version of the given string, where for every star (*) in the string the star and the
+    //chars immediately to its left and right are gone. So "ab*cd" yields "ad" and "ab**cd" also
+    //yields "ad".
+    public String starOut(String str) {
+        return str.replaceAll("\\*{2,}", "*").replaceAll("(^|.)\\*(.|$)", "");
+    }
+
+    //Given a string and a non-empty word string, return a version of the original String where
+    //all chars have been replaced by pluses ("+"), except for appearances of the word string
+    //which are preserved unchanged.
+    public String plusOut(String str, String word) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < str.length(); i = i + 1) {
+            if (str.startsWith(word, i) && !word.isEmpty()) {
+                sb.append(word);
+                i = i + word.length()-1;
+            }
+            else {
+                sb.append("+");
+            }
+        }
+        return sb.toString();
+    }
+
+    //Given a string and a non-empty word string, return a string made of each char just before
+    //and just after every appearance of the word in the string. Ignore cases where there is no
+    //char before or after the word, and a char may be included twice if it is between two words.
+    public String wordEnds(String str, String word) {
+        StringBuffer sb = new StringBuffer();
+        int strLength = str.length();
+        int wordLength = word.length();
+        for (int i = 0; i < str.length(); i++) {
+            if (str.startsWith(word, i)) {
+                if (i > 0){
+                    sb.append(str.charAt(i-1));
+                }
+                if (i + wordLength < strLength){
+                    sb.append(str.charAt(i + wordLength));
+                    i = i + wordLength - 1;
+                }
+            }
+        }
+        return sb.toString();
+    }
+
 }

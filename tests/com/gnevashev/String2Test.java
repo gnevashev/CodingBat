@@ -7,6 +7,80 @@ import static org.junit.jupiter.api.Assertions.*;
 class String2Test {
     String2 s = new String2();
 
+    //Given a string and a non-empty word string, return a string made of each char just before
+    //and just after every appearance of the word in the string. Ignore cases where there is no
+    //char before or after the word, and a char may be included twice if it is between two words.
+    @Test
+    void wordEnds() {
+        assertEquals("c13i", s.wordEnds("abcXY123XYijk", "XY"));
+        assertEquals("13", s.wordEnds("XY123XY", "XY"));
+        assertEquals("11", s.wordEnds("XY1XY", "XY"));
+    }
+
+    //Given a string and a non-empty word string, return a version of the original String where
+    //all chars have been replaced by pluses ("+"), except for appearances of the word string
+    //which are preserved unchanged.
+    @Test
+    void plusOut() {
+        assertEquals("++xy++", s.plusOut("12xy34", "xy"));
+        assertEquals("1+++++", s.plusOut("12xy34", "1"));
+        assertEquals("++xy++xy+++xy", s.plusOut("12xy34xyabcxy", "xy"));
+        assertEquals("+++++++XYZ", s.plusOut("abXYxyzXYZ", "XYZ"));
+        assertEquals("++++++", s.plusOut("12xy34", ""));
+    }
+
+    //Return a version of the given string, where for every star (*) in the string the star and the
+    //chars immediately to its left and right are gone. So "ab*cd" yields "ad" and "ab**cd" also
+    //yields "ad".
+    @Test
+    void starOut() {
+        assertEquals("ad", s.starOut("ab*cd"));
+        assertEquals("ad", s.starOut("ab**cd"));
+        assertEquals("silly", s.starOut("sm*eilly"));
+        assertEquals("string", s.starOut("stringy*"));
+        assertEquals("tringy", s.starOut("*stringy"));
+        assertEquals("", s.starOut("*"));
+    }
+
+    //Look for patterns like "zip" and "zap" in the string -- length-3, starting with 'z' and ending
+    //with 'p'. Return a string where for all such words, the middle letter is gone, so "zipXzap"
+    //yields "zpXzp".
+    @Test
+    void zipZap() {
+        assertEquals("zpXzp", s.zipZap("zipXzap"));
+        assertEquals("zpzp", s.zipZap("zopzop"));
+        assertEquals("zzzpzp", s.zipZap("zzzopzop"));
+    }
+
+    //Given a string, compute a new string by moving the first char to come after the next two
+    //chars, so "abc" yields "bca". Repeat this process for each subsequent group of 3 chars, so
+    //"abcdef" yields "bcaefd". Ignore any group of fewer than 3 chars at the end.
+    @Test
+    void oneTwo() {
+        assertEquals("bca", s.oneTwo("abc"));
+        assertEquals("cat", s.oneTwo("tca"));
+        assertEquals("catdog", s.oneTwo("tcagdo"));
+    }
+
+    //Returns true if for every '*' (star) in the string, if there are chars both immediately
+    //before and after the star, they are the same.
+    @Test
+    void sameStarChar() {
+        assertTrue(s.sameStarChar("xy*yzz"));
+        assertFalse(s.sameStarChar("xy*zzz"));
+        assertTrue(s.sameStarChar("*xa*az"));
+    }
+
+    //A sandwich is two pieces of bread with something in between. Return the string that is
+    //between the first and last appearance of "bread" in the given string, or return the empty
+    //string "" if there are not two pieces of bread.
+    @Test
+    void getSandwich() {
+        assertEquals("jam", s.getSandwich("breadjambread"));
+        assertEquals("jam", s.getSandwich("xxbreadjambreadyy"));
+        assertEquals("", s.getSandwich("xxbreadyy"));
+    }
+
     //Given a string, does "xyz" appear in the middle of the string? To define middle,
     //we'll say that the number of chars to the left and right of the "xyz" must differ
     //by at most one. This problem is harder than it looks.
