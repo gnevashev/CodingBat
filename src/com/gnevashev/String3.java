@@ -54,4 +54,35 @@ public class String3 {
         return (countOfIs == countOfNot);
     }
 
+    //We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its
+    //left or right. Return true if all the g's in the given string are happy.
+    public boolean gHappy(String str) {
+        return (!str.matches("(.*)(^|[^g])g([^g]|$)(.*)"));
+    }
+
+    //We'll say that a "triple" in a string is a char appearing three times in a row.
+    //Return the number of triples in the given string. The triples may overlap.
+    public int countTriple(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length()-2; i++) {
+            if (str.charAt(i) == str.charAt(i+1) && str.charAt(i) == str.charAt(i+2)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    //Given a string, return the sum of the digits 0-9 that appear in the string, ignoring all other characters.
+    //Return 0 if there are no digits in the string. (Note: Character.isDigit(char) tests if a char is one of the chars '0', '1', .. '9'.
+    //Integer.parseInt(string) converts a string to an int.)
+    public int sumDigits(String str) {
+        int sum = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(str.charAt(i))) {
+                sum += Integer.parseInt(str.substring(i, i+1));
+            }
+        }
+        return sum;
+    }
 }
