@@ -72,7 +72,6 @@ public class String3 {
         return count;
     }
 
-
     //Given a string, return the sum of the digits 0-9 that appear in the string, ignoring all other characters.
     //Return 0 if there are no digits in the string. (Note: Character.isDigit(char) tests if a char is one of the chars '0', '1', .. '9'.
     //Integer.parseInt(string) converts a string to an int.)
@@ -84,5 +83,77 @@ public class String3 {
             }
         }
         return sum;
+    }
+
+    //Given a string, return the longest substring that appears at both the beginning and end of
+    //the string without overlapping. For example, sameEnds("abXab") is "ab".
+    public String sameEnds(String string) {
+        int maxLength = 0;
+        for (int i = 0; i < string.length()/2; i++) {
+            if (string.substring(0, i+1).equals(string.substring(string.length() - i- 1))){
+                maxLength = i + 1;
+            }
+
+        }
+        return string.substring(0, maxLength);
+    }
+
+    //Given a string, look for a mirror image (backwards) string at both the beginning and end of
+    //the given string. In other words, zero or more characters at the very begining of the given
+    //string, and at the very end of the string in reverse order (possibly overlapping). For
+    //example, the string "abXYZba" has the mirror end "ab".
+    public String mirrorEnds(String string) {
+        char[] arr = string.toCharArray();
+        StringBuffer sb = new StringBuffer();
+        int i = 0;
+        while (i < arr.length && arr[i] == arr[arr.length - 1 - i]) {
+            sb.append(arr[i]);
+            i++;
+        }
+        return sb.toString();
+    }
+
+    //Given a string, return the length of the largest "block" in the string. A block is a run of
+    //adjacent chars that are the same.
+    public int maxBlock(String str) {
+        char[] arr = str.toCharArray();
+        if (arr.length == 0) return 0; //if string is empty
+        char arrI = arr[0];
+        int maxBlock = 1;
+        int curBlock = 1;
+        for (int i = 1; i < arr.length; i++) {
+            if (arrI == arr[i]) { //looping through "block" of adjustment chars
+                curBlock++;
+            }
+            else { //if adjacent chars are over
+                curBlock = 1;
+                arrI = arr[i];
+            }
+            maxBlock = Math.max(maxBlock, curBlock);
+        }
+        return maxBlock;
+    }
+
+    //Given a string, return the sum of the numbers appearing in the string, ignoring all other
+    //characters. A number is a series of 1 or more digit chars in a row. (Note:
+    //Character.isDigit(char) tests if a char is one of the chars '0', '1', .. '9'.
+    //Integer.parseInt(string) converts a string to an int.)
+    public int sumNumbers(String str) {
+        String[] arrStr = str.split("\\D");
+        int total = 0;
+        for (int i = 0; i < arrStr.length; i++) {
+            if (!arrStr[i].isEmpty()) {
+                total += Integer.parseInt(arrStr[i]);
+            }
+        }
+        return total;
+    }
+
+    //Given a string, return a string where every appearance of the lowercase word "is" has been
+    //replaced with "is not". The word "is" should not be immediately preceeded or followed by a
+    //letter -- so for example the "is" in "this" does not count. (Note: Character.isLetter(char)
+    //tests if a char is a letter.)
+    public String notReplace(String str) {
+        return str.replaceAll("\\bis\\b", "is not");
     }
 }

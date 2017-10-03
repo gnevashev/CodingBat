@@ -8,6 +8,61 @@ class String3Test {
 
     String3 s = new String3();
 
+    //Given a string, return a string where every appearance of the lowercase word "is" has been
+    //replaced with "is not". The word "is" should not be immediately preceeded or followed by a
+    //letter -- so for example the "is" in "this" does not count. (Note: Character.isLetter(char)
+    //tests if a char is a letter.)
+    @Test
+    void notReplace() {
+        assertEquals("is not test", s.notReplace("is test"));
+        assertEquals("is not-is not", s.notReplace("is-is"));
+        assertEquals("This is not right", s.notReplace("This is right"));
+    }
+
+    //Given a string, return the sum of the numbers appearing in the string, ignoring all other
+    //characters. A number is a series of 1 or more digit chars in a row. (Note:
+    //Character.isDigit(char) tests if a char is one of the chars '0', '1', .. '9'.
+    //Integer.parseInt(string) converts a string to an int.)
+    @Test
+    void sumNumbers() {
+        assertEquals(123, s.sumNumbers("abc123xyz"));
+        assertEquals(44, s.sumNumbers("aa11b33"));
+        assertEquals(18, s.sumNumbers("7 11"));
+    }
+
+    //Given a string, return the length of the largest "block" in the string. A block is a run of
+    //adjacent chars that are the same.
+    @Test
+    void maxBlock() {
+        assertEquals(2, s.maxBlock("hoopla"));
+        assertEquals(3, s.maxBlock("abbCCCddBBBxx"));
+        assertEquals(0, s.maxBlock(""));
+        assertEquals(1, s.maxBlock("x"));
+        assertEquals(2, s.maxBlock("xxyz"));
+        assertEquals(4, s.maxBlock("XXBBBbbxxXXXX"));
+    }
+
+    //Given a string, look for a mirror image (backwards) string at both the beginning and end of
+    //the given string. In other words, zero or more characters at the very begining of the given
+    //string, and at the very end of the string in reverse order (possibly overlapping). For
+    //example, the string "abXYZba" has the mirror end "ab".
+    @Test
+    void mirrorEnds() {
+        assertEquals("ab", s.mirrorEnds("abXYZba"));
+        assertEquals ("a", s.mirrorEnds("abca"));
+        assertEquals ("aba", s.mirrorEnds("aba"));
+    }
+
+    //Given a string, return the longest substring that appears at both the beginning and end of
+    //the string without overlapping. For example, sameEnds("abXab") is "ab".
+    @Test
+    void sameEnds() {
+        assertEquals("ab", s.sameEnds("abXab"));
+        assertEquals("x", s.sameEnds("xx"));
+        assertEquals("ab", s.sameEnds("abXYab"));
+        assertEquals("x", s.sameEnds("xxx"));
+    }
+
     //Given a string, return the sum of the digits 0-9 that appear in the string, ignoring all other characters.
     //Return 0 if there are no digits in the string. (Note: Character.isDigit(char) tests if a char is one of the chars '0', '1', .. '9'.
     //Integer.parseInt(string) converts a string to an int.
