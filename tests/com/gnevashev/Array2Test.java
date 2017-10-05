@@ -7,6 +7,63 @@ class Array2Test {
 
     Array2 a = new Array2();
 
+    //Given an array of ints, return true if it contains no 1's or it contains no 4's.
+    @Test
+    void no14() {
+        assertTrue(a.no14(new int[]{1, 2, 3}));
+        assertFalse(a.no14(new int[]{1, 2, 3, 4}));
+        assertTrue(a.no14(new int[]{2, 3, 4}));
+    }
+
+    //Given a number n, create and return a new string array of length n, containing the strings
+    //"0", "1" "2" .. through n-1. N may be 0, in which case just return a length 0 array.
+    //Note: String.valueOf(xxx) will make the String form of most types. The syntax to make a new
+    //string array is: new String[desired_length]  (See also: FizzBuzz Code)
+    @Test
+    void fizzArray2() {
+        assertArrayEquals(new String[] {"0", "1", "2", "3"}, a.fizzArray2(4));
+        assertArrayEquals(new String[] {}, a.fizzArray2(0));
+        assertArrayEquals(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}, a.fizzArray2(10));
+    }
+
+    //Given an array of ints, return true if every element is a 1 or a 4.
+    @Test
+    void only14() {
+        assertTrue(a.only14(new int[]{1, 4, 1, 4}));
+        assertTrue(a.only14(new int[]{1, 1}));
+        assertFalse(a.only14(new int[]{1, 4, 2, 4}));
+    }
+
+    //Given a number n, create and return a new int array of length n, containing the numbers
+    //0, 1, 2, ... n-1. The given n may be 0, in which case just return a length 0 array. You do
+    //not need a separate if-statement for the length-0 case; the for-loop should naturally
+    //execute 0 times in that case, so it just works. The syntax to make a new int array is:
+    //new int[desired_length]   (See also: FizzBuzz Code)
+    @Test
+    void fizzArray() {
+        assertArrayEquals(new int[]{0, 1, 2, 3}, a.fizzArray(4));
+        assertArrayEquals(new int[]{0}, a.fizzArray(1));
+        assertArrayEquals(new int[]{}, a.fizzArray(0));
+        assertArrayEquals(new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, a.fizzArray(10));
+
+    }
+
+    //Given an array of ints, return true if the number of 1's is greater than the number of 4's
+    @Test
+    void more14() {
+        assertTrue(a.more14(new int[]{1, 4, 1}));
+        assertFalse(a.more14(new int[]{1, 4, 1, 4}));
+        assertTrue(a.more14(new int[]{1, 1}));
+    }
+
+    //Given an array of ints, return true if the sum of all the 2's in the array is exactly 8.
+    @Test
+    void sum28() {
+        assertTrue(a.sum28(new int[]{2, 3, 2, 2, 4, 2}));
+        assertFalse(a.sum28(new int[]{2, 3, 2, 2, 4, 2, 2}));
+        assertFalse(a.sum28(new int[]{1, 2, 3, 4}));
+    }
+
     //Given an array of ints, return true if the array contains no 1's and no 3's.
     @Test
     void lucky13() {

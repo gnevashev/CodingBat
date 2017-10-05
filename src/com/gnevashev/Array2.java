@@ -100,4 +100,70 @@ public class Array2 {
         return true;
     }
 
+    //Given an array of ints, return true if the sum of all the 2's in the array is exactly 8.
+    public boolean sum28(int[] nums) {
+        int total = 0;
+        for (int value : nums) {
+            if (value == 2) {
+                total += value;
+            }
+        }
+        return (total == 8);
+    }
+
+    //Given an array of ints, return true if the number of 1's is greater than the number of 4's
+    public boolean more14(int[] nums) {
+        int count1s = 0;
+        int count4s = 0;
+        for (int value : nums) {
+            if (value == 1) count1s++;
+            if (value == 4) count4s++;
+        }
+        return (count1s > count4s);
+    }
+
+    //Given a number n, create and return a new int array of length n, containing the numbers
+    //0, 1, 2, ... n-1. The given n may be 0, in which case just return a length 0 array. You do
+    //not need a separate if-statement for the length-0 case; the for-loop should naturally
+    //execute 0 times in that case, so it just works. The syntax to make a new int array is:
+    //new int[desired_length]   (See also: FizzBuzz Code)
+    public int[] fizzArray(int n) {
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = i;
+        }
+        return arr;
+    }
+
+    //Given an array of ints, return true if every element is a 1 or a 4.
+    public boolean only14(int[] nums) {
+        for (int value : nums) {
+            if (value != 1 && value != 4) return false;
+        }
+        return true;
+    }
+
+    //Given a number n, create and return a new string array of length n, containing the strings
+    //"0", "1" "2" .. through n-1. N may be 0, in which case just return a length 0 array.
+    //Note: String.valueOf(xxx) will make the String form of most types. The syntax to make a new
+    //string array is: new String[desired_length]  (See also: FizzBuzz Code)
+    public String[] fizzArray2(int n) {
+        String[] arr = new String[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = String.valueOf(i);
+        }
+        return arr;
+    }
+
+    //Given an array of ints, return true if it contains no 1's or it contains no 4's.
+    public boolean no14(int[] nums) {
+        boolean have1s = false;
+        boolean have4s = false;
+        for (int value : nums) {
+            if (value == 1) have1s = true;
+            if (value == 4) have4s = true;
+            if (have1s && have4s) return false;
+        }
+        return true;
+    }
 }
