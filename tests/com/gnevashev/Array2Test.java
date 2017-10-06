@@ -7,6 +7,57 @@ class Array2Test {
 
     Array2 a = new Array2();
 
+    //Given an array of ints, return true if there is a 1 in the array with a 2
+    //somewhere later in the array.
+    @Test
+    void has12() {
+        assertTrue(a.has12(new int[]{1, 3, 2}));
+        assertTrue(a.has12(new int[]{3, 1, 2}));
+        assertTrue(a.has12(new int[]{3, 1, 4, 5, 2}));
+        assertFalse(a.has12(new int[]{3, 1, 4, 5, 6}));
+        assertFalse(a.has12(new int[]{}));
+        assertFalse(a.has12(new int[]{1}));
+    }
+
+    //Given an array of ints, return true if the array contains two 7's next to each other,
+    //or there are two 7's separated by one element, such as with {7, 1, 7}.
+    @Test
+    void has77() {
+        assertTrue(a.has77(new int[]{1, 7, 7}));
+        assertTrue(a.has77(new int[]{1, 7, 1, 7}));
+        assertFalse(a.has77(new int[]{1, 7, 1, 1, 7}));
+    }
+
+    //Given arrays nums1 and nums2 of the same length, for every element in nums1, consider
+    //the corresponding element in nums2 (at the same index). Return the count of the number
+    //of times that the two elements differ by 2 or less, but are not equal.
+    @Test
+    void matchUp() {
+        assertEquals(2, a.matchUp(new int[]{1, 2, 3}, new int[]{2, 3, 10}));
+        assertEquals(3, a.matchUp(new int[]{1, 2, 3}, new int[]{2, 3, 5}));
+        assertEquals(2, a.matchUp(new int[]{1, 2, 3}, new int[]{2, 3, 3}));
+    }
+
+    //Given an array of ints, return true if the array contains a 2 next to a 2 or a 4 next to a 4, but not both.
+    @Test
+    void either24() {
+        assertTrue(a.either24(new int[]{1, 2, 2}));
+        assertTrue(a.either24(new int[]{4, 4, 1}));
+        assertFalse(a.either24(new int[]{4, 4, 1, 2, 2}));
+    }
+
+    //We'll say that a value is "everywhere" in an array if for every pair of adjacent elements in
+    //the array, at least one of the pair is that value. Return true if the given value is everywhere
+    //in the array.
+    @Test
+    void isEverywhere() {
+        assertTrue(a.isEverywhere(new int[]{1, 2, 1, 3}, 1));
+        assertTrue(a.isEverywhere(new int[]{3},1));
+        assertFalse(a.isEverywhere(new int[]{1, 2, 1, 3}, 2));
+        assertFalse(a.isEverywhere(new int[]{1, 2, 1, 3, 4}, 1));
+        assertFalse(a.isEverywhere(new int[]{2, 1, 2, 1, 1, 2}, 2));
+    }
+
     //Given an array of ints, return true if it contains no 1's or it contains no 4's.
     @Test
     void no14() {

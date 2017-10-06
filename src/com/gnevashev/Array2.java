@@ -166,4 +166,72 @@ public class Array2 {
         }
         return true;
     }
+
+    //We'll say that a value is "everywhere" in an array if for every pair of adjacent elements in
+    //the array, at least one of the pair is that value. Return true if the given value is everywhere
+    //in the array.
+    public boolean isEverywhere(int[] nums, int val) {
+        for (int i = 0; i < nums.length-1; i++) {
+            if (nums[i] != val && nums[i+1] != val) return false;
+        }
+        return true;
+    }
+
+    //Given an array of ints, return true if the array contains a 2 next to a 2 or a 4 next to a 4, but not both.
+    public boolean either24(int[] nums) {
+        boolean is2 = false;
+        boolean is4 = false;
+        for (int i = 0; i < nums.length-1; i++) {
+            if (!is2 && nums[i] == 2 && nums[i+1] == 2) is2 = true;
+            if (!is4 && nums[i] == 4 && nums[i+1] == 4) is4 = true;
+            if (is2 && is4) break;
+        }
+        return (is2 ^ is4);
+    }
+
+    //Given arrays nums1 and nums2 of the same length, for every element in nums1, consider
+    //the corresponding element in nums2 (at the same index). Return the count of the number
+    //of times that the two elements differ by 2 or less, but are not equal.
+    public int matchUp(int[] nums1, int[] nums2) {
+        int diff = 0;
+        int count = 0;
+        for (int i = 0; i < nums1.length; i++) {
+            diff = Math.abs(nums1[i] - nums2[i]);
+            if (diff == 1 || diff == 2) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    //Given an array of ints, return true if the array contains two 7's next to each other,
+    //or there are two 7's separated by one element, such as with {7, 1, 7}.
+    public boolean has77(int[] nums) {
+        int first7 = -1;
+        for (int i = 0; i < nums.length; i++) {
+           if (nums[i] == 7 && first7 == -1) {
+               first7 = i;
+               continue;
+           }
+           if (nums[i] == 7) {
+               if (i - first7 == 1 || i- first7 == 2) return true;
+               first7 = i;
+               continue;
+           }
+        }
+        return false;
+    }
+
+    //Given an array of ints, return true if there is a 1 in the array with a 2
+    //somewhere later in the array.
+    public boolean has12(int[] nums) {
+        boolean has1 = false;
+        boolean has2 = false;
+        for (int i = 0; i < nums.length; i++) {
+            if (!has1 && nums[i] == 1) has1 = true;
+            if (has1 && !has2 && nums[i] == 2) has2 = true;
+            if (has1 && has2) break;
+        }
+        return (has1 && has2);
+    }
 }
