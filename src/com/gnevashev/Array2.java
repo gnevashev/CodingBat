@@ -234,4 +234,53 @@ public class Array2 {
         }
         return (has1 && has2);
     }
+
+    //Given an array of ints, return true if the array contains either 3 even or 3 odd values
+    //all next to each other.
+    public boolean modThree(int[] nums) {
+        if (nums.length < 3) return false;
+        int mod = 0;
+        for (int i = 0; i < nums.length-2; i++) {
+            mod = nums[i] % 2;
+            if (nums[i+1] % 2 == mod && nums[i+2] % 2 == mod) return true;
+        }
+        return false;
+    }
+
+    //Given an array of ints, return true if the value 3 appears in the array exactly 3 times, and
+    //no 3's are next to each other.
+    public boolean haveThree(int[] nums) {
+        if (nums.length < 5) return false;
+        int count = 0;
+        int prev3s = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 3) {
+                if (count == 0) { //first 3
+                    count++;
+                    prev3s = i;
+                }
+                else { //second and next 3-s
+                    count++;
+                    if (prev3s + 1 == i) return false; //check if prev 3 is next to current 3
+                    prev3s = i;
+                }
+            }
+        }
+        return (count == 3);
+    }
+
+    //Given an array of ints, return true if every 2 that appears in the array is next to another 2.
+    public boolean twoTwo(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 2) {
+                if (!((i > 0 && nums[i-1] == 2) || (i < nums.length - 1 && nums[i+1] == 2)))
+                        return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
 }

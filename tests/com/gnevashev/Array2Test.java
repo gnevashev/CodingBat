@@ -4,8 +4,36 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Array2Test {
-
     Array2 a = new Array2();
+
+    //Given an array of ints, return true if every 2 that appears in the array is next to another 2.
+    @Test
+    void twoTwo() {
+        assertTrue(a.twoTwo(new int[]{4, 2, 2, 3}));
+        assertTrue(a.twoTwo(new int[]{2, 2, 4}));
+        assertFalse(a.twoTwo(new int[]{2, 2, 4, 2}));
+    }
+
+    //Given an array of ints, return true if the value 3 appears in the array exactly 3 times, and
+    //no 3's are next to each other.
+    @Test
+    void haveThree() {
+        assertTrue(a.haveThree(new int[]{3, 1, 3, 1, 3}));
+        assertFalse(a.haveThree(new int[]{3, 1, 3, 3}));
+        assertFalse(a.haveThree(new int[]{3, 4, 3, 3, 4}));
+    }
+
+    //Given an array of ints, return true if the array contains either 3 even or 3 odd values
+    //all next to each other.
+    @Test
+    void modThree() {
+        assertTrue(a.modThree(new int[]{2, 1, 3, 5}));
+        assertFalse(a.modThree(new int[]{2, 1, 2, 5}));
+        assertFalse(a.modThree(new int[]{}));
+        assertFalse(a.modThree(new int[]{1}));
+        assertFalse(a.modThree(new int[]{1, 3}));
+        assertTrue(a.modThree(new int[]{2, 4, 2, 5}));
+    }
 
     //Given an array of ints, return true if there is a 1 in the array with a 2
     //somewhere later in the array.
