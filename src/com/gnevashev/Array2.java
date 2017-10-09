@@ -1,5 +1,7 @@
 package com.gnevashev;
 
+import java.util.ArrayList;
+
 public class Array2 {
 
     //Return the number of even ints in the given array.
@@ -280,7 +282,85 @@ public class Array2 {
         return true;
     }
 
+    //Return true if the group of N numbers at the start and end of the array are the same. For
+    //example, with {5, 6, 45, 99, 13, 5, 6}, the ends are the same for n=0 and n=2, and false
+    //for n=1 and n=3. You may assume that n is in the range 0..nums.length inclusive.
+    public boolean sameEnds(int[] nums, int len) {
+        for (int i = 0; i < len; i++) {
+         if (nums[i] != nums[nums.length-len+i]) return false;
+        }
+        return true;
+    }
 
+    //Return true if the array contains, somewhere, three increasing adjacent numbers like ....
+    //4, 5, 6, ... or 23, 24, 25.
+    public boolean tripleUp(int[] nums) {
+        if (nums.length < 3) return false;
+        for (int i = 0; i < nums.length-2; i++) {
+            if (nums[i] + 1 == nums[i+1] && nums[i] + 2 == nums[i+2]) return true;
+        }
+        return false;
+    }
 
+    //Given start and end numbers, return a new array containing the sequence of integers
+    //from start up to but not including end, so start=5 and end=10 yields {5, 6, 7, 8, 9}. The
+    //end number will be greater or equal to the start number. Note that a length-0 array is
+    //valid. (See also: FizzBuzz Code)
+    public int[] fizzArray3(int start, int end) {
+        int[] nums = new int[end - start];
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = start + i;
+        }
+        return nums;
+    }
+
+    //Return an array that is "left shifted" by one -- so {6, 2, 5, 3} returns {2, 5, 3, 6}. You
+    //may modify and return the given array, or return a new array.
+    public int[] shiftLeft(int[] nums) {
+        if (nums.length < 2) return nums;
+        int firstNum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            nums[i-1] = nums[i];
+        }
+        nums[nums.length-1] = firstNum;
+        return nums;
+    }
+
+    //For each multiple of 10 in the given array, change all the values following it to be that
+    //multiple of 10, until encountering another multiple of 10. So {2, 10, 3, 4, 20, 5} yields
+    //{2, 10, 10, 10, 20, 20}.
+    public int[] tenRun(int[] nums) {
+        int mof10 = 0;
+        boolean mofActivated = false;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 10 == 0) {
+                mof10 = nums[i];
+                mofActivated = true;
+                continue;
+            }
+            if (mofActivated){
+                nums[i] = mof10;
+            }
+        }
+        return nums;
+    }
+
+    //Given a non-empty array of ints, return a new array containing the elements from the
+    //original array that come before the first 4 in the original array. The original array will
+    //contain at least one 4. Note that it is valid in java to create an array of length 0.
+    public int[] pre4(int[] nums) {
+        int posOf4 = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 4) {
+                posOf4 = i;
+                break;
+            }
+        }
+        int[] ret = new int[posOf4];
+        for (int i = 0; i < posOf4; i++) {
+            ret[i] = nums[i];
+        }
+        return ret;
+    }
 
 }

@@ -6,6 +6,66 @@ import static org.junit.jupiter.api.Assertions.*;
 class Array2Test {
     Array2 a = new Array2();
 
+    //Given a non-empty array of ints, return a new array containing the elements from the
+    //original array that come before the first 4 in the original array. The original array will
+    //contain at least one 4. Note that it is valid in java to create an array of length 0.
+    @Test
+    void pre4() {
+        assertArrayEquals(new int[]{1, 2}, a.pre4(new int[]{1, 2, 4, 1}));
+        assertArrayEquals(new int[]{3, 1}, a.pre4(new int[]{3, 1, 4}));
+        assertArrayEquals(new int[]{1}, a.pre4(new int[]{1, 4, 4}));
+    }
+
+    //For each multiple of 10 in the given array, change all the values following it to be that
+    //multiple of 10, until encountering another multiple of 10. So {2, 10, 3, 4, 20, 5} yields
+    //{2, 10, 10, 10, 20, 20}.
+    @Test
+    void tenRun() {
+        assertArrayEquals(new int[]{2, 10, 10, 10, 20, 20}, a.tenRun(new int[]{2, 10, 3, 4, 20, 5}));
+        assertArrayEquals(new int[]{10, 10, 20, 20}, a.tenRun(new int[]{10, 1, 20, 2}));
+        assertArrayEquals(new int[]{10, 10, 10, 20}, a.tenRun(new int[]{10, 1, 9, 20}));
+        assertArrayEquals(new int[]{0, 0}, a.tenRun(new int[]{0, 2}));
+    }
+
+    //Return an array that is "left shifted" by one -- so {6, 2, 5, 3} returns {2, 5, 3, 6}. You
+    //may modify and return the given array, or return a new array.
+    @Test
+    void shiftLeft() {
+        assertArrayEquals(new int[]{2, 5, 3, 6}, a.shiftLeft(new int[]{6, 2, 5, 3}));
+        assertArrayEquals(new int[]{2, 1}, a.shiftLeft(new int[]{1, 2}));
+        assertArrayEquals(new int[]{1}, a.shiftLeft(new int[]{1}));
+    }
+
+    //Given start and end numbers, return a new array containing the sequence of integers
+    //from start up to but not including end, so start=5 and end=10 yields {5, 6, 7, 8, 9}. The
+    //end number will be greater or equal to the start number. Note that a length-0 array is
+    //valid. (See also: FizzBuzz Code)
+    @Test
+    void fizzArray3() {
+        assertArrayEquals(new int[]{5, 6, 7, 8, 9}, a.fizzArray3(5, 10));
+        assertArrayEquals(new int[]{11, 12, 13, 14, 15, 16, 17}, a.fizzArray3(11, 18));
+        assertArrayEquals(new int[]{1, 2}, a.fizzArray3(1, 3));
+    }
+
+    //Return true if the array contains, somewhere, three increasing adjacent numbers like ....
+    //4, 5, 6, ... or 23, 24, 25.
+    @Test
+    void tripleUp() {
+        assertTrue(a.tripleUp(new int[]{1, 4, 5, 6, 2}));
+        assertTrue(a.tripleUp(new int[]{1, 2, 3}));
+        assertFalse(a.tripleUp(new int[]{1, 2, 4}));
+    }
+
+    //Return true if the group of N numbers at the start and end of the array are the same. For
+    //example, with {5, 6, 45, 99, 13, 5, 6}, the ends are the same for n=0 and n=2, and false
+    //for n=1 and n=3. You may assume that n is in the range 0..nums.length inclusive.
+    @Test
+    void sameEnds() {
+        assertFalse(a.sameEnds(new int[]{5, 6, 45, 99, 13, 5, 6}, 1));
+        assertFalse(a.sameEnds(new int[]{5, 6, 45, 99, 13, 5, 6}, 3));
+        assertTrue(a.sameEnds(new int[]{5, 6, 45, 99, 13, 5, 6}, 2));
+    }
+
     //Given an array of ints, return true if every 2 that appears in the array is next to another 2.
     @Test
     void twoTwo() {
