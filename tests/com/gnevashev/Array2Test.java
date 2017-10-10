@@ -6,6 +6,38 @@ import static org.junit.jupiter.api.Assertions.*;
 class Array2Test {
     Array2 a = new Array2();
 
+    //Return an array that contains the exact same numbers as the given array, but rearranged
+    //so that all the zeros are grouped at the start of the array. The order of the non-zero
+    //numbers does not matter. So {1, 0, 0, 1} becomes {0 ,0, 1, 1}. You may modify and
+    //return the given array or make a new array.
+    @Test
+    void zeroFront() {
+        assertArrayEquals(new int[]{0, 0, 1, 1}, a.zeroFront(new int[]{1, 0, 0, 1}));
+        assertArrayEquals(new int[]{0, 0, 1, 1, 1}, a.zeroFront(new int[]{0, 1, 1, 0, 1}));
+        assertArrayEquals(new int[]{0, 1}, a.zeroFront(new int[]{1, 0}));
+    }
+
+    //We'll say that an element in an array is "alone" if there are values before and after it,
+    //and those values are different from it. Return a version of the given array where every instance
+    //of the given value which is alone is replaced by whichever value to its left or right is larger.
+    @Test
+    void notAlone() {
+        assertArrayEquals(new int[]{1, 3, 3}, a.notAlone(new int[]{1, 2, 3}, 2));
+        assertArrayEquals(new int[]{1, 3, 3, 5, 5, 2}, a.notAlone(new int[]{1, 2, 3, 2, 5, 2}, 2));
+        assertArrayEquals(new int[]{3, 4}, a.notAlone(new int[]{3, 4}, 3));
+        assertArrayEquals(new int[]{1, 1, 1, 2}, a.notAlone(new int[]{1, 1, 1, 2}, 1));
+    }
+
+    //Given a non-empty array of ints, return a new array containing the elements from the
+    //original array that come after the last 4 in the original array. The original array will
+    //contain at least one 4. Note that it is valid in java to create an array of length 0.
+    @Test
+    void post4() {
+        assertArrayEquals(new int[]{1, 2}, a.post4(new int[]{2, 4, 1, 2}));
+        assertArrayEquals(new int[]{2}, a.post4(new int[]{4, 1, 4, 2}));
+        assertArrayEquals(new int[]{1, 2, 3}, a.post4(new int[]{4, 4, 1, 2, 3}));
+    }
+
     //Given a non-empty array of ints, return a new array containing the elements from the
     //original array that come before the first 4 in the original array. The original array will
     //contain at least one 4. Note that it is valid in java to create an array of length 0.

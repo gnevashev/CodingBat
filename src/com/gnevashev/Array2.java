@@ -1,6 +1,7 @@
 package com.gnevashev;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Array2 {
 
@@ -363,4 +364,58 @@ public class Array2 {
         return ret;
     }
 
+    //Given a non-empty array of ints, return a new array containing the elements from the
+    //original array that come after the last 4 in the original array. The original array will
+    //contain at least one 4. Note that it is valid in java to create an array of length 0.
+    public int[] post4(int[] nums) {
+        int posOf4 = 0;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (nums[i] == 4) {
+                posOf4 = i;
+                break;
+            }
+        }
+        int[] ret = new int[nums.length - posOf4 - 1];
+        for (int i = posOf4+1; i < nums.length; i++) {
+            ret[i - posOf4 - 1] = nums[i];
+        }
+        return ret;
+    }
+
+    //We'll say that an element in an array is "alone" if there are values before and after it,
+    //and those values are different from it. Return a version of the given array where every instance
+    //of the given value which is alone is replaced by whichever value to its left or right is larger.
+    public int[] notAlone(int[] nums, int val) {
+        if (nums.length < 3) return nums;
+        for (int i = 1; i < nums.length-1; i++) {
+            if (nums[i] == val && nums[i] != nums[i+1] && nums[i] != nums[i-1]) {
+                nums[i] = Math.max(nums[i-1], nums[i+1]);
+            }
+        }
+        return nums;
+    }
+
+    //Return an array that contains the exact same numbers as the given array, but rearranged
+    //so that all the zeros are grouped at the start of the array. The order of the non-zero
+    //numbers does not matter. So {1, 0, 0, 1} becomes {0 ,0, 1, 1}. You may modify and
+    //return the given array or make a new array.
+    public int[] zeroFront(int[] nums) {
+        int lastZeroPos = 0;
+        int tempValue = 0;
+        for (int i = 0; i < nums.length; i++) {
+            //skip zero's in the beginning of the array
+            if (i == lastZeroPos && nums[i] == 0) {
+                lastZeroPos++;
+                continue;
+            }
+            //core logic, swap 0 and the number
+            if (nums[i] == 0) {
+                tempValue = nums[lastZeroPos];
+                nums[lastZeroPos] = 0;
+                nums[i] = tempValue;
+                lastZeroPos++;
+            }
+        }
+        return nums;
+    }
 }
