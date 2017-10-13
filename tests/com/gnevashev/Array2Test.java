@@ -4,7 +4,48 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Array2Test {
+
     Array2 a = new Array2();
+
+    @Test
+    void fizzBuzz() {
+        assertArrayEquals(new String[] {"1", "2", "Fizz", "4", "Buzz"}, a.fizzBuzz(1, 6));
+        assertArrayEquals(new String[] {"1", "2", "Fizz", "4", "Buzz", "Fizz", "7"}, a.fizzBuzz(1, 8));
+        assertArrayEquals(new String[] {"1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz"}, a.fizzBuzz(1, 11));
+    }
+
+    //Return an array that contains the exact same numbers as the given array, but rearranged
+    //so that all the even numbers come before all the odd numbers. Other than that, the numbers
+    //can be in any order. You may modify and return the given array, or make a new array.
+    @Test
+    void evenOdd() {
+        assertArrayEquals(new int[]{0, 0, 0, 1, 1, 1, 1}, a.evenOdd(new int[]{1, 0, 1, 0, 0, 1, 1}));
+        assertArrayEquals(new int[]{2, 3, 3}, a.evenOdd(new int[]{3, 3, 2}));
+        assertArrayEquals(new int[]{2, 2, 2}, a.evenOdd(new int[]{2, 2, 2}));
+    }
+
+    //Return a version of the given array where each zero value in the array is replaced by the
+    //largest odd value to the right of the zero in the array. If there is no odd value to the right
+    //of the zero, leave the zero as a zero.
+    @Test
+    void zeroMax() {
+        assertArrayEquals(new int[]{5, 5, 3, 3}, a.zeroMax(new int[]{0, 5, 0, 3}));
+        assertArrayEquals(new int[]{3, 4, 3, 3}, a.zeroMax(new int[]{0, 4, 0, 3}));
+        assertArrayEquals(new int[]{1, 1, 0}, a.zeroMax(new int[]{0, 1, 0}));
+    }
+
+    //Return a version of the given array where all the 10's have been removed. The remaining
+    //elements should shift left towards the start of the array as needed, and the empty spaces
+    //a the end of the array should be 0. So {1, 10, 10, 2} yields {1, 2, 0, 0}. You may modify
+    //and return the given array or make a new array.
+    @Test
+    void withoutTen() {
+        assertArrayEquals(new int[]{1, 2, 0, 0}, a.withoutTen(new int[]{1, 10, 10, 2}));
+        assertArrayEquals(new int[]{2, 0, 0}, a.withoutTen(new int[]{10, 2, 10}));
+        assertArrayEquals(new int[]{1, 99, 0}, a.withoutTen(new int[]{1, 99, 10}));
+        assertArrayEquals(new int[]{13, 14, 0, 0}, a.withoutTen(new int[]{10, 13, 10, 14}));
+        assertArrayEquals(new int[]{13, 14, 0, 0, 0}, a.withoutTen(new int[]{10, 13, 10, 14, 10}));
+    }
 
     //Return an array that contains the exact same numbers as the given array, but rearranged
     //so that all the zeros are grouped at the start of the array. The order of the non-zero
