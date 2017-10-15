@@ -489,9 +489,7 @@ public class Array2 {
     //instead of just printing, and we vary the start/end instead of just always doing 1..100.
     public String[] fizzBuzz(int start, int end) {
         String[] retArr = new String[end - start];
-        int j = 0;
-        for (int i = start; i < end; i++) {
-            j = i-start;
+        for (int i = start, j = 0; i < end; i++, j=i-start) {
             if (i % 3 == 0 && i % 5 == 0) {
                 retArr[j] = "FizzBuzz";
                 continue;
