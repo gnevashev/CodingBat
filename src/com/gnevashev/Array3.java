@@ -63,12 +63,15 @@ public class Array3 {
     public boolean canBalance(int[] nums) {
         int leftSum = 0;
         int rightSum = 0;
+        int totalSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            totalSum += nums[i];
+        }
+        if (totalSum % 2 != 0) return false;
+
         for (int i = 0; i < nums.length-1; i++) {
             leftSum += nums[i];
-            rightSum = 0;
-            for (int j = i+1; j < nums.length; j++) {
-                rightSum += nums[j];
-            }
+            rightSum = totalSum - leftSum;
             if (leftSum == rightSum) return true;
         }
         return false;
