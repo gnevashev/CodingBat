@@ -8,6 +8,38 @@ class Array3Test {
 
     Array3 a = new Array3();
 
+    //We'll say that a "mirror" section in an array is a group of contiguous elements such that
+    //somewhere in the array, the same group appears in reverse order. For example, the largest
+    //mirror section in {1, 2, 3, 8, 9, 3, 2, 1} is length 3 (the {1, 2, 3} part). Return the size of
+    //the largest mirror section found in the given array.
+    @Test
+    void maxMirror() {
+        assertEquals(3, a.maxMirror(new int[]{1, 2, 3, 8, 9, 3, 2, 1}));
+        assertEquals(3, a.maxMirror(new int[]{1, 2, 1, 4}));
+        assertEquals(2, a.maxMirror(new int[]{7, 1, 2, 9, 7, 2, 1}));
+    }
+
+    //Given n>=0, create an array with the pattern {1,    1, 2,    1, 2, 3,   ... 1, 2, 3 .. n}
+    //(spaces added to show the grouping). Note that the length of the array will be 1 + 2 + 3
+    //... + n, which is known to sum to exactly n*(n + 1)/2.
+    @Test
+    void seriesUp() {
+        assertArrayEquals(new int[]{1, 1, 2, 1, 2, 3}, a.seriesUp(3));
+        assertArrayEquals(new int[]{1, 1, 2, 1, 2, 3, 1, 2, 3, 4}, a.seriesUp(4));
+        assertArrayEquals(new int[]{1, 1, 2}, a.seriesUp(2));
+        assertArrayEquals(new int[]{}, a.seriesUp(0));
+        assertArrayEquals(new int[]{1}, a.seriesUp(1));
+    }
+
+    //Given n>=0, create an array length n*n with the following pattern, shown here for n=3 :
+    //{0, 0, 1,    0, 2, 1,    3, 2, 1} (spaces added to show the 3 groups).
+    @Test
+    void squareUp() {
+        assertArrayEquals(new int[]{0, 0, 1, 0, 2, 1, 3, 2, 1}, a.squareUp(3));
+        assertArrayEquals(new int[]{0, 1, 2, 1}, a.squareUp(2));
+        assertArrayEquals(new int[]{0, 0, 0, 1, 0, 0, 2, 1, 0, 3, 2, 1, 4, 3, 2, 1}, a.squareUp(4));
+    }
+
     //Given two arrays of ints sorted in increasing order, outer and inner, return true if all of
     //the numbers in inner appear in outer. The best solution makes only a single "linear" pass of
     //both arrays, taking advantage of the fact that both arrays are already in sorted order.

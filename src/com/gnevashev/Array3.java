@@ -96,5 +96,44 @@ public class Array3 {
         return true;
     }
 
+    //Given n>=0, create an array length n*n with the following pattern, shown here for n=3 :
+    //{0, 0, 1,    0, 2, 1,    3, 2, 1} (spaces added to show the 3 groups).
+    public int[] squareUp(int n) {
+        int[] nums = new int[n*n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j <= (i+1); j++) {
+                nums[(i+1)*n - j] = j;
+            }
+        }
+        return nums;
+    }
+
+    //Given n>=0, create an array with the pattern {1,    1, 2,    1, 2, 3,   ... 1, 2, 3 .. n}
+    //(spaces added to show the grouping). Note that the length of the array will be 1 + 2 + 3
+    //... + n, which is known to sum to exactly n*(n + 1)/2.
+    public int[] seriesUp(int n) {
+        int len = n*(n+1) / 2;
+        int pos = 0;
+        int[] nums = new int[len];
+        for (int i = 0; i < n; i++) {
+            pos += i;
+            for (int j = 1; j <= i+1; j++) {
+                nums[pos + j - 1] = j;
+            }
+        }
+        return nums;
+    }
+
+    //We'll say that a "mirror" section in an array is a group of contiguous elements such that
+    //somewhere in the array, the same group appears in reverse order. For example, the largest
+    //mirror section in {1, 2, 3, 8, 3, 2, 1, 9} is length 3 (the {1, 2, 3} part). Return the size of
+    //the largest mirror section found in the given array.
+    public int maxMirror(int[] nums) {
+        if (nums.length <= 1) return nums.length;
+        int maxMirror = 1;
+        //in progress
+        return maxMirror;
+    }
+
 
 }
