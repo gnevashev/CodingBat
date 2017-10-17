@@ -129,10 +129,39 @@ public class Array3 {
     //mirror section in {1, 2, 3, 8, 3, 2, 1, 9} is length 3 (the {1, 2, 3} part). Return the size of
     //the largest mirror section found in the given array.
     public int maxMirror(int[] nums) {
-        if (nums.length <= 1) return nums.length;
-        int maxMirror = 1;
-        //in progress
+        int maxMirror = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = nums.length-1, k = i, count = 0; j >= 0 && k < nums.length; j--) {
+                if (nums[k] == nums[j]) {
+                    count++;
+                    k++;
+                    maxMirror = Integer.max(maxMirror, count);
+                }
+                else {
+                    k = i;
+                    count = 0;
+                }
+            }
+        }
         return maxMirror;
+    }
+
+    //Say that a "clump" in an array is a series of 2 or more adjacent elements of the same
+    //value. Return the number of clumps in the given array.
+    public int countClumps(int[] nums) {
+        int count = 0;
+        int i = 0;
+        int j = 0;
+        while (i < nums.length) {
+            while (j < nums.length && nums[i] == nums[j]) {
+                j++;
+            }
+            if (j - i > 1) {
+                count++;
+            }
+            i = j;
+        }
+        return count;
     }
 
 

@@ -8,6 +8,17 @@ class Array3Test {
 
     Array3 a = new Array3();
 
+    //Say that a "clump" in an array is a series of 2 or more adjacent elements of the same
+    //value. Return the number of clumps in the given array.
+    @Test
+    void countClumps() {
+        assertEquals(2, a.countClumps(new int[]{1, 2, 2, 3, 4, 4}));
+        assertEquals(2, a.countClumps(new int[]{1, 1, 2, 1, 1}));
+        assertEquals(1, a.countClumps(new int[]{1, 1, 1, 1, 1}));
+        assertEquals(0, a.countClumps(new int[]{1}));
+        assertEquals(0, a.countClumps(new int[]{0}));
+    }
+
     //We'll say that a "mirror" section in an array is a group of contiguous elements such that
     //somewhere in the array, the same group appears in reverse order. For example, the largest
     //mirror section in {1, 2, 3, 8, 9, 3, 2, 1} is length 3 (the {1, 2, 3} part). Return the size of
@@ -17,6 +28,8 @@ class Array3Test {
         assertEquals(3, a.maxMirror(new int[]{1, 2, 3, 8, 9, 3, 2, 1}));
         assertEquals(3, a.maxMirror(new int[]{1, 2, 1, 4}));
         assertEquals(2, a.maxMirror(new int[]{7, 1, 2, 9, 7, 2, 1}));
+        assertEquals(0, a.maxMirror(new int[]{}));
+        assertEquals(1, a.maxMirror(new int[]{1}));
     }
 
     //Given n>=0, create an array with the pattern {1,    1, 2,    1, 2, 3,   ... 1, 2, 3 .. n}
