@@ -10,6 +10,82 @@ class AP1Test {
 
     AP1 a = new AP1();
 
+    //Given two arrays, A and B, of non-negative int scores. A "special" score is one which is a multiple of 10,
+    //such as 40 or 90. Return the sum of largest special score in A and the largest special score in B.
+    //To practice decomposition, write a separate helper method which finds the largest special score in an array.
+    //Write your helper method after your scoresSpecial() method in the JavaBat text area.
+    @Test
+    void scoresSpecial() {
+        assertEquals(40, a.scoresSpecial(new int[]{12, 10, 4}, new int[]{2, 20, 30}));
+        assertEquals(40, a.scoresSpecial(new int[]{20, 10, 4}, new int[]{2, 20, 10}));
+        assertEquals(20, a.scoresSpecial(new int[]{12, 11, 4}, new int[]{2, 20, 31}));
+    }
+
+    //Given an array of strings, return a new array without the strings that are equal to the target string.
+    //One approach is to count the occurrences of the target string, make a new array of the correct length,
+    //and then copy over the correct strings.
+    @Test
+    void wordsWithout() {
+        assertArrayEquals(new String[]{"b", "c"}, a.wordsWithout(new String[] {"a", "b", "c", "a"}, "a"));
+        assertArrayEquals(new String[]{"a", "c", "a"}, a.wordsWithout(new String[] {"a", "b", "c", "a"}, "b"));
+        assertArrayEquals(new String[]{"a", "b", "a" }, a.wordsWithout(new String[] {"a", "b", "c", "a"}, "c"));
+    }
+
+    //The "key" array is an array containing the correct answers to an exam, like {"a", "a", "b", "b"}.
+    //the "answers" array contains a student's answers, with "?" representing a question left blank.
+    //The two arrays are not empty and are the same length. Return the score for this array of answers,
+    //giving +4 for each correct answer, -1 for each incorrect answer, and +0 for each blank answer.
+    @Test
+    void scoreUp() {
+        assertEquals(6, a.scoreUp(new String[]{"a", "a", "b", "b"}, new String[] {"a", "c", "b", "c"}));
+        assertEquals(11, a.scoreUp(new String[]{"a", "a", "b", "b"}, new String[] {"a", "a", "b", "c"}));
+        assertEquals(16, a.scoreUp(new String[]{"a", "a", "b", "b"}, new String[] {"a", "a", "b", "b"}));
+    }
+
+    //Given 2 arrays that are the same length containing strings, compare the 1st string in one
+    //array to the 1st string in the other array, the 2nd to the 2nd and so on. Count the number
+    //of times that the 2 strings are non-empty and start with the same char. The strings may be
+    //any length, including 0.
+    @Test
+    void matchUp() {
+        assertEquals(1, a.matchUp(new String[]{"aa", "bb", "cc"}, new String[]{"aaa", "xx", "bb"}));
+        assertEquals(2, a.matchUp(new String[]{"aa", "bb", "cc"}, new String[]{"aaa", "b", "bb"}));
+        assertEquals(1, a.matchUp(new String[]{"aa", "bb", "cc"}, new String[]{"", "", "ccc"}));
+        assertEquals(1, a.matchUp(new String[]{"", "", "ccc"}, new String[]{"aa", "bb", "cc"}));
+    }
+
+    //We'll say that a positive int n is "endy" if it is in the range 0..10 or 90..100 (inclusive).
+    //Given an array of positive ints, return a new array of length "count" containing the first
+    //test if a number is endy. The original array will contain at least "count" endy numbers.
+    //endy numbers from the original array. Decompose out a separate isEndy(int n) method to
+    @Test
+    void copyEndy() {
+        assertArrayEquals(new int[]{9, 90}, a.copyEndy(new int[]{9, 11, 90, 22, 6}, 2));
+        assertArrayEquals(new int[]{9, 90, 6}, a.copyEndy(new int[]{9, 11, 90, 22, 6}, 3));
+        assertArrayEquals(new int[]{1, 1}, a.copyEndy(new int[]{12, 1, 1, 13, 0, 20}, 2));
+    }
+
+    @Test
+    void isEndy() {
+        assertTrue(a.isEndy(0));
+        assertTrue(a.isEndy(10));
+        assertFalse(a.isEndy(20));
+        assertTrue(a.isEndy(90));
+        assertTrue(a.isEndy(100));
+        assertFalse(a.isEndy(101));
+        assertFalse(a.isEndy(89));
+    }
+
+    //Given an array of positive ints, return a new array of length "count" containing the first
+    //even numbers from the original array. The original array will contain at least "count" even
+    //numbers.
+    @Test
+    void copyEvens() {
+        assertArrayEquals(new int[]{2, 4}, a.copyEvens(new int[]{3, 2, 4, 5, 8}, 2));
+        assertArrayEquals(new int[]{2, 4, 8}, a.copyEvens(new int[]{3, 2, 4, 5, 8}, 3));
+        assertArrayEquals(new int[]{6, 2, 4}, a.copyEvens(new int[]{6, 1, 2, 4, 5, 8}, 3));
+    }
+
     //We'll say that a positive int divides itself if every digit in the number divides into the
     //number evenly. So for example 128 divides itself since 1, 2, and 8 all divide into 128 evenly.
     //We'll say that 0 does not divide into anything evenly, so no number with a 0 digit divides itself.
