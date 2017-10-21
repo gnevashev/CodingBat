@@ -193,14 +193,68 @@ public class AP1 {
         return maxHelper(a) + maxHelper(b);
     }
 
-    public int maxHelper (int[] a) {
+    public int maxHelper (int[] nums) {
         int max = 0;
-        for (int value : a) {
+        for (int value : nums) {
             if (value > max && value % 10 == 0) {
                 max = value;
             }
         }
         return max;
     }
+
+    //We have an array of heights, representing the altitude along a walking trail. Given start/end indexes into the array,
+    //return the sum of the changes for a walk beginning at the start index and ending at the end index.
+    //For example, with the heights {5, 3, 6, 7, 2} and start=2, end=4 yields a sum of 1 + 5 = 6.
+    //The start end end index will both be valid indexes into the array with start <= end.
+    public int sumHeights(int[] heights, int start, int end) {
+        int sumHeights = 0;
+        for (int i = start; i < end; i++) {
+            sumHeights += Math.abs(heights[i] - heights[i+1]);
+        }
+        return sumHeights;
+    }
+
+    //(A variation on the sumHeights problem.) We have an array of heights, representing the altitude along a walking trail.
+    //Given start/end indexes into the array, return the sum of the changes for a walk beginning at the start index and ending
+    //at the end index, however increases in height count double. For example, with the heights {5, 3, 6, 7, 2} and start=2, end=4
+    //yields a sum of 1*2 + 5 = 7. The start end end index will both be valid indexes into the array with start <= end.
+    public int sumHeights2(int[] heights, int start, int end) {
+        int sumHeights = 0;
+        for (int i = start, value = 0; i < end; i++) {
+            value = heights[i+1] - heights[i];
+            sumHeights += (value > 0) ? value*2 : -value;
+        }
+        return sumHeights;
+    }
+
+    //(A variation on the sumHeights problem.) We have an array of heights, representing the altitude along a walking trail.
+    //Given start/end indexes into the array, return the number of "big" steps for a walk starting at the start index and ending
+    //at the end index. We'll say that step is big if it is 5 or more up or down.
+    //The start end end index will both be valid indexes into the array with start <= end.
+    public int bigHeights(int[] heights, int start, int end) {
+        int countBig = 0;
+        for (int i = start; i < end; i++) {
+            if (Math.abs(heights[i] - heights[i+1]) >= 5) {
+                countBig ++;
+            }
+        }
+        return countBig;
+    }
+
+    //We have data for two users, A and B, each with a String name and an int id.
+    //The goal is to order the users such as for sorting.
+    //Return -1 if A comes before B, 1 if A comes after B, and 0 if they are the same.
+    //Order first by the string names, and then by the id numbers if the names are the same.
+    //Note: with Strings str1.compareTo(str2) returns an int value which is negative/0/positive
+    //to indicate how str1 is ordered to str2 (the value is not limited to -1/0/1).
+    //(On the AP, there would be two User objects, but here the code simply takes the two strings
+    //and two ints directly. The code logic is the same.)
+    public int userCompare(String aName, int aId, String bName, int bId) {
+        if (aName.compareTo(bName) < 0) return -1;
+        if (aName.compareTo(bName) > 0) return 1;
+        return Integer.compare(aId, bId);
+    }
+
 
 }

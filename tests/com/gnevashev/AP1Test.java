@@ -7,8 +7,56 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AP1Test {
-
     AP1 a = new AP1();
+
+    //We have data for two users, A and B, each with a String name and an int id.
+    //The goal is to order the users such as for sorting.
+    //Return -1 if A comes before B, 1 if A comes after B, and 0 if they are the same.
+    //Order first by the string names, and then by the id numbers if the names are the same.
+    //Note: with Strings str1.compareTo(str2) returns an int value which is negative/0/positive
+    //to indicate how str1 is ordered to str2 (the value is not limited to -1/0/1).
+    //(On the AP, there would be two User objects, but here the code simply takes the two strings
+    //and two ints directly. The code logic is the same.)
+    @Test
+    void userCompare() {
+        assertEquals(-1, a.userCompare("bb", 1, "zz", 2));
+        assertEquals(1, a.userCompare("bb", 1, "aa", 2));
+        assertEquals(0, a.userCompare("bb", 1, "bb", 1));
+        assertEquals(-1, a.userCompare("adam", 1, "bob", 5));
+    }
+
+    //(A variation on the sumHeights problem.) We have an array of heights, representing the altitude along a walking trail.
+    //Given start/end indexes into the array, return the number of "big" steps for a walk starting at the start index and ending
+    //at the end index. We'll say that step is big if it is 5 or more up or down.
+    //The start end end index will both be valid indexes into the array with start <= end.
+    @Test
+    void bigHeights() {
+        assertEquals(1, a.bigHeights(new int[]{5, 3, 6, 7, 2}, 2, 4));
+        assertEquals(0, a.bigHeights(new int[]{5, 3, 6, 7, 2}, 0, 1));
+        assertEquals(1, a.bigHeights(new int[]{5, 3, 6, 7, 2}, 0, 4));
+    }
+
+    //(A variation on the sumHeights problem.) We have an array of heights, representing the altitude along a walking trail.
+    //Given start/end indexes into the array, return the sum of the changes for a walk beginning at the start index and ending
+    //at the end index, however increases in height count double. For example, with the heights {5, 3, 6, 7, 2} and start=2, end=4
+    //yields a sum of 1*2 + 5 = 7. The start end end index will both be valid indexes into the array with start <= end.
+    @Test
+    void sumHeights2() {
+        assertEquals(7, a.sumHeights2(new int[]{5, 3, 6, 7, 2}, 2, 4));
+        assertEquals(2, a.sumHeights2(new int[]{5, 3, 6, 7, 2}, 0, 1));
+        assertEquals(15, a.sumHeights2(new int[]{5, 3, 6, 7, 2}, 0, 4));
+    }
+
+    //We have an array of heights, representing the altitude along a walking trail. Given start/end indexes into the array,
+    //return the sum of the changes for a walk beginning at the start index and ending at the end index.
+    //For example, with the heights {5, 3, 6, 7, 2} and start=2, end=4 yields a sum of 1 + 5 = 6.
+    //The start end end index will both be valid indexes into the array with start <= end.
+    @Test
+    void sumHeights() {
+        assertEquals(6, a.sumHeights(new int[]{5, 3, 6, 7, 2}, 2, 4));
+        assertEquals(2, a.sumHeights(new int[]{5, 3, 6, 7, 2}, 0, 1));
+        assertEquals(11, a.sumHeights(new int[]{5, 3, 6, 7, 2}, 0, 4));
+    }
 
     //Given two arrays, A and B, of non-negative int scores. A "special" score is one which is a multiple of 10,
     //such as 40 or 90. Return the sum of largest special score in A and the largest special score in B.
