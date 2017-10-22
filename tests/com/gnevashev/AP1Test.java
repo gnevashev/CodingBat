@@ -9,6 +9,34 @@ import static org.junit.jupiter.api.Assertions.*;
 class AP1Test {
     AP1 a = new AP1();
 
+    //Start with two arrays of strings, a and b, each in alphabetical order, possibly with duplicates.
+    //Return the count of the number of strings which appear in both arrays.
+    //The best "linear" solution makes a single pass over both arrays,
+    //taking advantage of the fact that they are in alphabetical order.
+    @Test
+    void commonTwo() {
+        assertEquals(2, a.commonTwo(new String[]{"a", "c", "x", "x"}, new String[]{"b", "c", "d", "x", "x"}));
+        assertEquals(3, a.commonTwo(new String[]{"a", "c", "x"}, new String[]{"a", "b", "c", "x", "z"}));
+        assertEquals(3, a.commonTwo(new String[]{"a", "b", "c"}, new String[]{"a", "b", "c"}));
+        assertEquals(0, a.commonTwo(new String[]{}, new String[]{"a", "b", "c"}));
+    }
+
+    @Test
+    void maxHelper() {
+    }
+
+    //Start with two arrays of strings, A and B, each with its elements in alphabetical order and without duplicates.
+    //Return a new array containing the first N elements from the two arrays.
+    //The result array should be in alphabetical order and without duplicates. A and B will both have a length which is N or more.
+    //The best "linear" solution makes a single pass over A and B, taking advantage of the fact that they are in alphabetical order,
+    //copying elements directly to the new array.
+    @Test
+    void mergeTwo() {
+        assertArrayEquals(new String[]{"a", "b", "c"}, a.mergeTwo(new String[]{"a", "c", "z"}, new String[]{"b", "f", "z"}, 3));
+        assertArrayEquals(new String[]{"a", "c", "f"}, a.mergeTwo(new String[]{"a", "c", "z"}, new String[]{"c", "f", "z"}, 3));
+        assertArrayEquals(new String[]{"c", "f", "g"}, a.mergeTwo(new String[]{"f", "g", "z"}, new String[]{"c", "f", "g"}, 3));
+    }
+
     //We have data for two users, A and B, each with a String name and an int id.
     //The goal is to order the users such as for sorting.
     //Return -1 if A comes before B, 1 if A comes after B, and 0 if they are the same.

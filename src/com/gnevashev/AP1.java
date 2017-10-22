@@ -256,5 +256,59 @@ public class AP1 {
         return Integer.compare(aId, bId);
     }
 
+    //Start with two arrays of strings, A and B, each with its elements in alphabetical order and without duplicates.
+    //Return a new array containing the first N elements from the two arrays.
+    //The result array should be in alphabetical order and without duplicates. A and B will both have a length which is N or more.
+    //The best "linear" solution makes a single pass over A and B, taking advantage of the fact that they are in alphabetical order,
+    //copying elements directly to the new array.
+    public String[] mergeTwo(String[] a, String[] b, int n) {
+        String[] ret = new String[n];
+        for (int aIndex = 0, bIndex = 0, k = 0, compare = 0; k < n; k++) {
+            compare = a[aIndex].compareTo(b[bIndex]);
+            if ( compare < 0) {
+                ret[k] = a[aIndex];
+                aIndex++;
+            }
+            else if (compare > 0) {
+                ret[k] = b[bIndex];
+                bIndex++;
+            }
+            else {
+                ret[k] = a[aIndex];
+                aIndex++;
+                bIndex++;
+            }
+        }
+        return ret;
+    }
 
+    //Start with two arrays of strings, a and b, each in alphabetical order, possibly with duplicates.
+    //Return the count of the number of strings which appear in both arrays.
+    //The best "linear" solution makes a single pass over both arrays,
+    //taking advantage of the fact that they are in alphabetical order.
+    public int commonTwo(String[] a, String[] b) {
+        if (a.length == 0 || b.length == 0) return 0;
+        //now we know arrays are not empty;
+        int aIndex = 0;
+        int bIndex = 0;
+        int compareResult = 0;
+        int count = 0;
+
+        while (aIndex < a.length && bIndex < b.length){
+            compareResult = a[aIndex].compareTo(b[bIndex]);
+            if (compareResult < 0) {
+                aIndex++;
+            }
+            else if (compareResult > 0) {
+                bIndex++;
+            }
+            else {
+                if (aIndex > 0 && (!a[aIndex-1].equals(a[aIndex])) || aIndex == 0) count++;
+                aIndex++;
+                bIndex++;
+            }
+
+        }
+        return count;
+    }
 }
