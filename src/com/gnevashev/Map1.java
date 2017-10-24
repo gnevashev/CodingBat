@@ -46,4 +46,74 @@ public class Map1 {
         return map;
     }
 
+    //Given a map of food keys and their topping values, modify and return the map as follows:
+    //if the key "ice cream" has a value, set that as the value for the key "yogurt" also.
+    //If the key "spinach" has a value, change that value to "nuts".
+    public Map<String, String> topping2(Map<String, String> map) {
+        if (map.containsKey("ice cream")) {
+            map.put("yogurt", map.get("ice cream"));
+        }
+        if (map.containsKey("spinach")) {
+            map.put("spinach", "nuts");
+        }
+        return map;
+    }
+
+    //Given a map of food keys and topping values, modify and return the map as follows:
+    //if the key "potato" has a value, set that as the value for the key "fries".
+    //If the key "salad" has a value, set that as the value for the key "spinach".
+    public Map<String, String> topping3(Map<String, String> map) {
+        if (map.containsKey("potato")) {
+            map.put("fries", map.get("potato"));
+        }
+        if (map.containsKey("salad")) {
+            map.put("spinach", map.get("salad"));
+        }
+        return map;
+    }
+
+    //Modify and return the given map as follows: if the keys "a" and "b" are both
+    //in the map and have equal values, remove them both.
+    public Map<String, String> mapAB2(Map<String, String> map) {
+        if (map.containsKey("a") && map.containsKey("b") && map.get("a").equals(map.get("b"))) {
+            map.remove("a");
+            map.remove("b");
+        }
+        return map;
+    }
+
+    //Modify and return the given map as follows: if exactly one of the keys "a" or "b" has a
+    //value in the map (but not both), set the other to have that same value in the map.
+    public Map<String, String> mapAB3(Map<String, String> map) {
+        boolean aExists = map.containsKey("a");
+        boolean bExists = map.containsKey("b");
+        if (aExists && !bExists) {
+            map.put("b", map.get("a"));
+        }
+        if (!aExists && bExists) {
+            map.put("a", map.get("b"));
+        }
+        return map;
+    }
+
+    //Modify and return the given map as follows: if the keys "a" and "b" have values that have
+    //different lengths, then set "c" to have the longer value. If the values exist and have the
+    //same length, change them both to the empty string in the map.
+    public Map<String, String> mapAB4(Map<String, String> map) {
+        String aValue = map.getOrDefault("a", null);
+        String bValue = map.getOrDefault("b", null);
+        if (aValue != null && bValue != null) {
+            if (aValue.length() > bValue.length()) {
+                map.put("c", map.get("a"));
+            } else if (aValue.length() < bValue.length()) {
+                map.put("c", map.get("b"));
+            } else {
+                map.put("a", "");
+                map.put("b", "");
+            }
+        }
+        return map;
+    }
+
+
 }
